@@ -5,6 +5,7 @@ coverage/
 .DS_Store
 .aistudio/
 .vercel/
+design-assets/
 *.log
 .env*
 !.env.example

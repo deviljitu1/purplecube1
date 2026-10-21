@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -23,11 +23,12 @@ export const FadeIn: React.FC<FadeInProps> = ({
   y = 30,
   className = '',
 }) => {
+  const reducedMotion = useReducedMotion();
   return (
     <motion.div
-      initial={{ opacity: 0, x, y }}
+      initial={reducedMotion ? false : { opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '50px', amount: 0 }}
+      viewport={{ once: true, margin: '80px', amount: 0 }}
       transition={{
         duration,
         delay,

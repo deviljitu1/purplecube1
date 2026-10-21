@@ -20,13 +20,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenContact }) => 
   return (
     <section
       id="about"
-      className="relative min-h-[80vh] flex flex-col justify-center items-center px-6 sm:px-8 md:px-12 py-24 sm:py-32 bg-[#0C0C0C] overflow-hidden"
+      className="relative flex flex-col justify-center items-center px-6 sm:px-8 md:px-12 py-16 sm:py-24 bg-[#0C0C0C] overflow-hidden"
     >
       {/* Subtle atmospheric center glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#6A0DAD]/10 blur-[150px] rounded-full pointer-events-none" />
 
       {/* Center Content Column */}
-      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto gap-10 sm:gap-14">
+      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto gap-7 sm:gap-10">
         {/* Subtle Category Pill */}
         <FadeIn delay={0} y={30}>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#140822]/80 border border-[#9D4EDD]/30 text-[#C77DFF] text-xs font-mono uppercase tracking-widest backdrop-blur-md mb-2">
@@ -49,32 +49,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenContact }) => 
             className="text-[#D7E2EA] font-light text-center leading-relaxed max-w-[680px] select-none text-base sm:text-xl md:text-2xl"
           />
 
-          {/* Clean Metric Pills */}
           <FadeIn delay={0.15} y={20}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl">
-              <div className="p-4 rounded-2xl bg-[#121217]/80 border border-white/[0.08] text-center">
-                <Layers size={18} className="mx-auto text-[#C77DFF] mb-1.5" />
-                <span className="text-xs font-mono uppercase text-[#D7E2EA]/60 block">Layer Height</span>
-                <span className="text-sm sm:text-base font-bold text-white block mt-0.5">0.08mm Ultra</span>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-[#121217]/80 border border-white/[0.08] text-center">
-                <Cpu size={18} className="mx-auto text-[#C77DFF] mb-1.5" />
-                <span className="text-xs font-mono uppercase text-[#D7E2EA]/60 block">Fleet Capacity</span>
-                <span className="text-sm sm:text-base font-bold text-white block mt-0.5">18 Active Units</span>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-[#121217]/80 border border-white/[0.08] text-center">
-                <Zap size={18} className="mx-auto text-[#C77DFF] mb-1.5" />
-                <span className="text-xs font-mono uppercase text-[#D7E2EA]/60 block">Rapid Prototyping</span>
-                <span className="text-sm sm:text-base font-bold text-white block mt-0.5">24h Dispatch</span>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-[#121217]/80 border border-white/[0.08] text-center">
-                <ShieldCheck size={18} className="mx-auto text-[#C77DFF] mb-1.5" />
-                <span className="text-xs font-mono uppercase text-[#D7E2EA]/60 block">Data Privacy</span>
-                <span className="text-sm sm:text-base font-bold text-white block mt-0.5">Strict NDA</span>
-              </div>
+            <div className="flex flex-wrap justify-center gap-x-7 gap-y-3 text-xs sm:text-sm text-[#D7E2EA]/80">
+              <span className="flex items-center gap-2"><Layers size={16} className="text-[#C77DFF]" /> Design support</span>
+              <span className="flex items-center gap-2"><Cpu size={16} className="text-[#C77DFF]" /> Material guidance</span>
+              <span className="flex items-center gap-2"><Zap size={16} className="text-[#C77DFF]" /> Custom finishes</span>
+              <span className="flex items-center gap-2"><ShieldCheck size={16} className="text-[#C77DFF]" /> Small & bulk runs</span>
             </div>
           </FadeIn>
 

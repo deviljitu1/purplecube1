@@ -22,15 +22,15 @@ interface ProjectItem {
 const PROJECTS_DATA: ProjectItem[] = [
   {
     number: '01',
-    name: 'Aerospace Drone Frame',
-    category: 'Precision Engineering',
-    tech: 'Carbon Fiber Nylon & Tough PETG',
+    name: 'Architectural Scale Models',
+    category: 'Ideas at Scale',
+    tech: 'Architectural PLA & Model Making',
     imageMain:
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      '/images/villa-model.webp',
     imageDetail1:
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80',
+      '/images/hero-studio.webp',
     imageDetail2:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80',
+      '/images/desk-organizer.webp',
   },
   {
     number: '02',
@@ -38,23 +38,23 @@ const PROJECTS_DATA: ProjectItem[] = [
     category: 'Artisan Sculptures',
     tech: 'Royal Silk Gold PLA & 8K SLA Resin',
     imageMain:
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+      '/images/ganpati.webp',
     imageDetail1:
-      'https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?auto=format&fit=crop&w=600&q=80',
+      '/images/miniature-bust.webp',
     imageDetail2:
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+      '/images/spiral-vase.webp',
   },
   {
     number: '03',
     name: 'Kinetic Gear Assemblies',
     category: 'Functional Mechanisms',
-    tech: 'Multi-Color FDM & 0.08mm Tolerances',
+    tech: 'Multi-Colour FDM & Print-in-Place Design',
     imageMain:
-      'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=1200&q=80',
+      '/images/gear-prototype.webp',
     imageDetail1:
-      'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80',
+      '/images/gyro-fidget.webp',
     imageDetail2:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+      '/images/hero-studio.webp',
   },
 ];
 
@@ -75,9 +75,10 @@ const ProjectCard: React.FC<{
   return (
     <div
       ref={containerRef}
-      className="h-[80vh] sm:h-[85vh] flex items-start justify-center sticky top-24 md:top-28"
+      className="project-stack-card h-[80svh] last:h-auto md:h-[85vh] md:last:h-[85vh] flex items-start justify-center sticky"
       style={{
         top: `calc(${index * 24}px + 5.5rem)`,
+        zIndex: index + 1,
       }}
     >
       <motion.div
@@ -123,16 +124,12 @@ const ProjectCard: React.FC<{
         {/* Visual Showcase: 2-column clean layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pt-5 items-stretch">
           {/* Left Column (40% width): 2 stacked detail images */}
-          <div className="md:col-span-5 flex flex-col gap-4">
+          <div className="md:col-span-5 hidden md:flex flex-col gap-4">
             <div className="w-full h-32 sm:h-36 md:h-44 rounded-2xl overflow-hidden bg-[#181820] border border-white/[0.08]">
               <img
                 src={project.imageDetail1}
                 alt={`${project.name} Detail 1`}
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80';
-                }}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -141,10 +138,6 @@ const ProjectCard: React.FC<{
                 src={project.imageDetail2}
                 alt={`${project.name} Detail 2`}
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
-                }}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -152,15 +145,11 @@ const ProjectCard: React.FC<{
 
           {/* Right Column (60% width): 1 large flagship image */}
           <div className="md:col-span-7">
-            <div className="w-full h-full min-h-[220px] sm:min-h-[280px] md:min-h-[380px] rounded-2xl overflow-hidden bg-[#181820] border border-white/[0.08] relative">
+            <div className="w-full h-[32svh] min-h-[180px] max-h-[300px] md:h-full md:max-h-none md:min-h-[380px] rounded-2xl overflow-hidden bg-[#181820] border border-white/[0.08] relative">
               <img
                 src={project.imageMain}
                 alt={`${project.name} Flagship Print`}
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';
-                }}
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[11px] font-mono text-white/90 border border-white/10">
@@ -178,12 +167,12 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="bg-[#0C0C0C] relative pt-20 sm:pt-28 pb-28 px-4 sm:px-6 md:px-10 border-t border-white/[0.06]"
+      className="bg-[#0C0C0C] relative pt-20 sm:pt-28 pb-12 md:pb-28 px-4 sm:px-6 md:px-10 border-t border-white/[0.06]"
     >
       <div className="max-w-5xl mx-auto mb-14 text-center">
         <FadeIn delay={0} y={30}>
           <span className="text-xs uppercase tracking-widest text-[#9D4EDD] font-mono px-3.5 py-1.5 rounded-full bg-[#180828] border border-[#9D4EDD]/30 inline-block mb-3">
-            Case Studies
+            Design Possibilities
           </span>
           <h2
             className="hero-heading font-black uppercase text-center leading-none tracking-tight select-none"
@@ -192,13 +181,14 @@ export const ProjectsSection: React.FC = () => {
             Projects
           </h2>
           <p className="text-sm sm:text-base text-[#D7E2EA]/70 font-light mt-3 max-w-xl mx-auto">
-            From precision drone mechanics to sacred temple carvings, explore our recent studio fabrication deliveries.
+            Explore what you could create: scale models, detailed sculptures and functional mechanisms.
           </p>
+          <p className="mt-3 text-xs text-[#C3B3D2]">AI-generated concept gallery. Discuss your own design with the studio.</p>
         </FadeIn>
       </div>
 
       {/* Sticky stacking container */}
-      <div className="relative pb-16">
+      <div className="relative md:pb-16">
         {PROJECTS_DATA.map((proj, idx) => (
           <ProjectCard
             key={proj.number}

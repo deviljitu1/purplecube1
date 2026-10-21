@@ -29,8 +29,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '#about' },
     { label: 'Products', href: '#products' },
+    { label: 'Personalise', href: '#personalised' },
+    { label: 'Print a File', href: '#upload' },
     { label: 'Services', href: '#services' },
     { label: 'Projects', href: '#projects' },
     { label: 'Corporate', href: '#corporate' },
@@ -95,6 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           <button
             type="button"
             aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-1.5 sm:p-2 rounded-full text-[#D7E2EA] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
           >
@@ -117,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               <span className="text-xs uppercase tracking-widest text-[#C77DFF] font-mono">
                 Studio Directory
               </span>
-              <span className="text-[11px] text-[#D7E2EA]/50 font-mono">
+              <span className="text-[11px] text-[#D7E2EA]/75 font-mono">
                 Think &bull; Design &bull; Print
               </span>
             </div>

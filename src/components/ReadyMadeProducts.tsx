@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { FadeIn } from './FadeIn.tsx';
-import { ShoppingBag, Eye, Star, Sparkles, Check, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { WhatsAppIcon } from './WhatsAppIcon.tsx';
 
 export interface Product {
@@ -39,7 +39,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
       { name: 'Royal Purple', hex: '#6A0DAD' },
       { name: 'Marble White', hex: '#F1F5F9' },
     ],
-    image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
+    image: '/images/ganpati.webp',
     isBestseller: true,
   },
   {
@@ -57,7 +57,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
       { name: 'Stealth Black', hex: '#1E1E24' },
       { name: 'Slate Grey', hex: '#64748B' },
     ],
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80',
+    image: '/images/desk-organizer.webp',
     isBestseller: true,
   },
   {
@@ -75,7 +75,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
       { name: 'Emerald Silk', hex: '#059669' },
       { name: 'Pearl White', hex: '#FAFAFA' },
     ],
-    image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/spiral-vase.webp',
     isBestseller: true,
   },
   {
@@ -93,7 +93,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
       { name: 'Carbon Black', hex: '#18181B' },
       { name: 'Glow in Dark', hex: '#86EFAC' },
     ],
-    image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80',
+    image: '/images/gyro-fidget.webp',
     isBestseller: true,
   },
   {
@@ -110,7 +110,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
       { name: 'Grey Sculpt Primer', hex: '#94A3B8' },
       { name: 'Obsidian Black', hex: '#0F172A' },
     ],
-    image: 'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80',
+    image: '/images/miniature-bust.webp',
   },
   {
     id: 'modern-villa-model',
@@ -126,7 +126,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
       { name: 'Architectural White', hex: '#FFFFFF' },
       { name: 'Concrete Grey', hex: '#64748B' },
     ],
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/villa-model.webp',
   },
 ];
 
@@ -159,7 +159,7 @@ export const ReadyMadeProducts: React.FC = () => {
   };
 
   return (
-    <section id="products" className="py-24 px-5 sm:px-8 md:px-12 bg-[#0C0C0C] relative">
+    <section id="products" className="py-16 sm:py-24 px-5 sm:px-8 md:px-12 bg-[#0C0C0C] relative">
       {/* Glow orb */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#6A0DAD]/10 blur-[120px] pointer-events-none" />
 
@@ -173,19 +173,21 @@ export const ReadyMadeProducts: React.FC = () => {
               Explore Our 3D Printed Collection
             </h2>
             <p className="text-[#D7E2EA]/80 text-sm sm:text-base font-light">
-              Crafted in-house on high-precision Bambu Lab and Elegoo SLA machines. Finished with
-              artisan care, ready for immediate dispatch across India &amp; worldwide.
+              Sculptural pieces, clever desk essentials and objects made your way.
+              Choose a design and talk to us about colours, sizes and finishes.
             </p>
           </div>
         </FadeIn>
 
         {/* Category Filter Tabs */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
+        <div role="group" aria-label="Filter products by category" className="flex flex-wrap items-center justify-center gap-2 mb-8">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
+              type="button"
+              aria-pressed={selectedCategory === cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-3.5 py-3 rounded-full text-[11px] sm:text-xs font-medium tracking-wide whitespace-nowrap transition-all cursor-pointer ${
                 selectedCategory === cat.id
                   ? 'bg-gradient-to-r from-[#6A0DAD] to-[#9D4EDD] text-white shadow-[0_0_15px_rgba(157,78,221,0.5)]'
                   : 'bg-[#18181E] text-[#D7E2EA]/70 hover:text-white hover:bg-[#25252E] border border-white/5'
@@ -200,42 +202,26 @@ export const ReadyMadeProducts: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProducts.map((product, idx) => (
             <FadeIn key={product.id} delay={idx * 0.08} y={30}>
-              <div className="group h-full flex flex-col justify-between rounded-3xl bg-[#121217] border border-white/10 hover:border-[#9D4EDD]/60 transition-all duration-300 p-4 sm:p-5 hover:shadow-[0_10px_35px_-10px_rgba(157,78,221,0.3)]">
+              <div className="product-card group h-full flex flex-col justify-between rounded-3xl bg-[#121217] border border-white/10 hover:border-[#9D4EDD]/60 transition-all duration-300 p-4 sm:p-5 hover:shadow-[0_10px_35px_-10px_rgba(157,78,221,0.3)]">
                 <div>
                   {/* Image container */}
-                  <div className="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-[#181820] mb-4">
+                  <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-[#181820] mb-4">
                     <img
                       src={product.image}
                       alt={product.name}
                       loading="lazy"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
-                      }}
+                      width={1000}
+                      height={1000}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3 flex gap-2">
                       <span className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] uppercase font-mono tracking-wider text-[#C77DFF] border border-[#9D4EDD]/40">
                         {product.categoryLabel}
                       </span>
-                      {product.isBestseller && (
-                        <span className="px-2 py-0.5 rounded-full bg-amber-500/90 text-black font-bold text-[10px] uppercase tracking-wider">
-                          Bestseller
-                        </span>
-                      )}
+
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedProduct(product);
-                        setSelectedColor(product.colors[0].name);
-                      }}
-                      className="absolute bottom-3 right-3 p-2.5 rounded-full bg-black/70 backdrop-blur-md text-white hover:bg-[#9D4EDD] transition-colors border border-white/20"
-                      title="Quick View Specs"
-                    >
-                      <Eye size={16} />
-                    </button>
+
                   </div>
 
                   {/* Header info */}
@@ -245,54 +231,16 @@ export const ReadyMadeProducts: React.FC = () => {
                     </h3>
                   </div>
 
-                  <p className="text-xs text-[#D7E2EA]/70 line-clamp-2 mb-3 font-light leading-relaxed">
-                    {product.description}
-                  </p>
-
-                  {/* Material & specs badge */}
-                  <div className="flex flex-wrap items-center gap-2 mb-4 text-[11px] text-[#D7E2EA]/60 font-mono">
-                    <span className="bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                      {product.material}
-                    </span>
-                    <span className="bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                      {product.dimensions}
-                    </span>
-                  </div>
-
-                  {/* Color swatches */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-[11px] text-[#D7E2EA]/50">Finishes:</span>
-                    <div className="flex items-center gap-1.5">
-                      {product.colors.map((c) => (
-                        <span
-                          key={c.name}
-                          title={c.name}
-                          className="w-4 h-4 rounded-full border border-white/30"
-                          style={{ backgroundColor: c.hex }}
-                        />
-                      ))}
-                    </div>
-                  </div>
+                  <p className="text-sm text-[#D7E2EA]/65 mb-4">{product.material}</p>
                 </div>
 
-                {/* Footer status & enquiry action */}
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] text-[#C77DFF] uppercase tracking-widest block font-mono font-medium">
-                      Status
-                    </span>
-                    <span className="text-sm font-semibold text-white">Made to Order</span>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => openWhatsAppOrder(product)}
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-gradient-to-r from-[#6A0DAD] to-[#9D4EDD] text-white text-xs font-semibold uppercase tracking-wider hover:brightness-110 active:scale-95 transition-all shadow-[0_0_15px_rgba(157,78,221,0.4)] cursor-pointer"
-                  >
-                    <WhatsAppIcon size={14} />
-                    <span>Enquire Now</span>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => { setSelectedProduct(product); setSelectedColor(product.colors[0].name); }}
+                  className="flex items-center justify-between w-full pt-4 border-t border-white/10 text-sm font-medium text-[#D9B4FA] hover:text-white transition-colors"
+                >
+                  View details <ArrowRight size={16} />
+                </button>
               </div>
             </FadeIn>
           ))}
@@ -302,8 +250,10 @@ export const ReadyMadeProducts: React.FC = () => {
       {/* Quick View Modal */}
       {selectedProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-          <div className="relative w-full max-w-2xl bg-[#14141B] border border-[#9D4EDD]/40 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+          <div role="dialog" aria-modal="true" aria-label={selectedProduct.name} className="relative w-full max-w-2xl max-h-[90svh] overflow-y-auto bg-[#14141B] border border-[#9D4EDD]/40 rounded-3xl p-6 sm:p-8 shadow-2xl">
             <button
+              type="button"
+              aria-label="Close product preview"
               onClick={() => setSelectedProduct(null)}
               className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
             >

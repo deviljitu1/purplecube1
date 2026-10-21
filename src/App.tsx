@@ -9,6 +9,8 @@ import { HeroSection } from './components/HeroSection.tsx';
 import { MarqueeSection } from './components/MarqueeSection.tsx';
 import { AboutSection } from './components/AboutSection.tsx';
 import { ReadyMadeProducts } from './components/ReadyMadeProducts.tsx';
+import { PersonalizedSection } from './components/PersonalizedSection.tsx';
+import { Upload3DFileSection } from './components/Upload3DFileSection.tsx';
 import { CorporateBulkSection } from './components/CorporateBulkSection.tsx';
 import { ServicesSection } from './components/ServicesSection.tsx';
 import { ProjectsSection } from './components/ProjectsSection.tsx';
@@ -39,6 +41,10 @@ export default function App() {
 
         {/* PURPLE CUBE CORE SECTION 1: Ready-made products */}
         <ReadyMadeProducts />
+
+        <PersonalizedSection />
+
+        <Upload3DFileSection />
 
         {/* 4. SERVICES SECTION */}
         <ServicesSection />

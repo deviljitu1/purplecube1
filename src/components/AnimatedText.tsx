@@ -4,7 +4,7 @@
  */
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'motion/react';
+import { motion, useScroll, useTransform, useReducedMotion, MotionValue } from 'motion/react';
 
 interface AnimatedTextProps {
   text: string;
@@ -16,7 +16,7 @@ const Character: React.FC<{
   progress: MotionValue<number>;
   range: [number, number];
 }> = ({ char, progress, range }) => {
-  const opacity = useTransform(progress, range, [0.2, 1]);
+  const opacity = useTransform(progress, range, [0.65, 1]);
 
   return (
     <span className="relative inline-block">
@@ -30,6 +30,7 @@ const Character: React.FC<{
 
 export const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '' }) => {
   const containerRef = useRef<HTMLParagraphElement>(null);
+  const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start 0.85', 'end 0.25'],
@@ -39,8 +40,12 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = ''
   const totalChars = text.length;
   let runningCharIndex = 0;
 
+  if (reducedMotion) return <p ref={containerRef} className={className}>{text}</p>;
+
   return (
     <p ref={containerRef} className={className}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
       {words.map((word, wordIndex) => {
         const wordChars = word.split('');
         const wordStartIndex = runningCharIndex;
@@ -68,6 +73,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = ''
           </React.Fragment>
         );
       })}
+      </span>
     </p>
   );
 };

@@ -29,7 +29,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent(
-      `Hello Purple Cube! My name is ${name || 'there'}. I would like to consult on a ${projectType}: "${message || 'I have a 3D file/concept ready.'}"`
+      `Hello Purple Cube! My name is ${name || 'there'}.\nEmail: ${email}\nPhone: ${phone}\nI would like to consult on a ${projectType}: "${message || 'I have a 3D file/concept ready.'}"`
     );
     window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
   };
@@ -49,9 +49,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         {isSent ? (
           <div className="text-center py-10">
             <CheckCircle2 size={52} className="mx-auto text-emerald-400 mb-4 animate-bounce" />
-            <h3 className="text-2xl font-bold text-white mb-2">Inquiry Received!</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">Your enquiry is ready</h3>
             <p className="text-xs text-[#D7E2EA]/70 mb-6 font-light leading-relaxed">
-              Pallav Sir and the Purple Cube engineering team will review your project requirements and connect back on WhatsApp or email shortly.
+              Continue on WhatsApp to send your project details to the studio. Your enquiry has not been sent yet.
             </p>
             <div className="flex flex-col gap-3">
               <button
@@ -164,7 +164,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 type="submit"
                 className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#6A0DAD] to-[#9D4EDD] text-white text-xs font-semibold uppercase tracking-wider hover:brightness-110 shadow-lg cursor-pointer"
               >
-                Send Message
+                Prepare Enquiry
               </button>
 
               <button

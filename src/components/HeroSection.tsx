@@ -1,136 +1,108 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { ArrowUpRight, Box, Fingerprint, Layers3, Pause, Play, Upload } from 'lucide-react';
 import { ContactButton } from './ContactButton.tsx';
 
-interface HeroSectionProps {
-  onOpenContact: () => void;
-}
-
-/**
- * Customizable background media slides.
- * Easily add image or video items here.
- */
+interface HeroSectionProps { onOpenContact: () => void; }
 export interface BackgroundMediaItem {
-  id: string;
-  type: 'image' | 'video';
-  src: string;
-  poster?: string;
-  alt?: string;
+  id: string; type: 'image' | 'video'; src: string; poster?: string; alt?: string;
+  label: string; detail: string;
 }
 
 export const HERO_BACKGROUNDS: BackgroundMediaItem[] = [
   {
-    id: 'slide-1',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80',
-    alt: '3D Precision Engineering & Prototyping',
+    id: 'slide-1', type: 'image', src: '/images/hero-studio.webp',
+    alt: 'A 3D printer creating a violet spiral vase in a workshop',
+    label: 'Layer by layer. Idea to object.', detail: '3D printing & rapid prototyping',
   },
   {
-    id: 'slide-2',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80',
-    alt: 'Bespoke 3D Sculptures & Sacred Art',
+    id: 'slide-2', type: 'image', src: '/images/ganpati.webp',
+    alt: 'Silk gold 3D printed Ganpati idol with fine sculpted details',
+    label: 'Small details. Personal meaning.', detail: 'Sculptures, miniatures & personalised gifts',
   },
   {
-    id: 'slide-3',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=1920&q=80',
-    alt: 'High-Detail SLA Resin & Precision Fabrication',
+    id: 'slide-3', type: 'image', src: '/images/villa-model.webp',
+    alt: 'White 3D printed architectural scale model of a modern villa',
+    label: 'Big ideas. Brought to scale.', detail: 'Architectural models & custom projects',
   },
+];
+
+const journeys = [
+  { href: '#products', icon: Box, title: 'Explore products', detail: 'Objects for everyday life' },
+  { href: '#personalised', icon: Fingerprint, title: 'Make it personal', detail: 'Miniatures & custom gifts' },
+  { href: '#upload', icon: Upload, title: 'Print your file', detail: 'Share a model. Get a quote.' },
+  { href: '#corporate', icon: Layers3, title: 'Create in bulk', detail: 'For teams, brands & events' },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reducedMotion = useReducedMotion();
 
-  // Auto slide every 6 seconds smoothly in the background without buttons
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % HERO_BACKGROUNDS.length);
-    }, 6000);
+    if (paused || reducedMotion) return;
+    const timer = setInterval(() => setCurrentIdx((prev) => (prev + 1) % HERO_BACKGROUNDS.length), 6500);
     return () => clearInterval(timer);
-  }, []);
+  }, [paused, reducedMotion, currentIdx]);
 
   const activeMedia = HERO_BACKGROUNDS[currentIdx];
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-x-clip bg-[#0C0C0C] select-none pt-24 sm:pt-28 pb-12 sm:pb-16 px-4">
-      {/* ========================================================================= */}
-      {/* 1. CINEMATIC AUTO-SLIDING BACKGROUND (IMAGES OR VIDEOS) */}
-      {/* ========================================================================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={activeMedia.id}
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1] }}
-            className="absolute inset-0 w-full h-full"
-          >
+    <section aria-label="Purple Cube 3D printing studio" className="studio-hero relative isolate overflow-hidden bg-[#0C0C0C] px-5 sm:px-8 md:px-12 pt-16 sm:pt-20 pb-6 sm:pb-8">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <AnimatePresence initial={false}>
+          <motion.div key={activeMedia.id}
+            initial={{ opacity: 0, scale: reducedMotion ? 1 : 1.025 }}
+            animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: reducedMotion ? 0 : 0.8, ease: [0.4, 0, 0.2, 1] }} className="absolute inset-0">
             {activeMedia.type === 'video' ? (
-              <video
-                src={activeMedia.src}
-                poster={activeMedia.poster}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              />
+              <video src={activeMedia.src} poster={activeMedia.poster} autoPlay={!reducedMotion} muted loop playsInline className="hero-media" />
             ) : (
-              <img
-                src={activeMedia.src}
-                alt={activeMedia.alt || 'Purple Cube 3D Printing Studio'}
-                className="w-full h-full object-cover"
-              />
+              <img src={activeMedia.src} alt={activeMedia.alt} fetchPriority={currentIdx === 0 ? 'high' : 'auto'} className={`hero-media ${currentIdx > 0 ? 'hero-media-product' : ''}`} />
             )}
           </motion.div>
         </AnimatePresence>
-
-        {/* Lighter Cinematic Tint Overlays to keep background visible and lively */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C] via-[#0C0C0C]/35 to-[#0C0C0C]/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0C0C0C]/35 via-transparent to-[#0C0C0C]/70" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#6A0DAD]/15 blur-[150px] rounded-full pointer-events-none" />
+        <div className="hero-shade absolute inset-0" />
+        <div className="studio-grid absolute inset-0 opacity-20" />
       </div>
 
-      {/* ========================================================================= */}
-      {/* 2. MINIMALIST HERO CENTERPIECE: PURE HEADING, DESCRIPTION & BUTTONS */}
-      {/* ========================================================================= */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 text-center my-auto flex flex-col items-center justify-center pointer-events-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-          className="w-full flex flex-col items-center"
-        >
-          {/* Refined Brand Heading */}
-          <h1 className="hero-heading font-black uppercase tracking-tight leading-none select-none text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-            PURPLE CUBE
-          </h1>
-
-          {/* Clean, concise supporting description */}
-          <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-[#D7E2EA]/85 font-light tracking-wide max-w-xl sm:max-w-2xl mx-auto leading-relaxed px-2">
-            Precision additive manufacturing and physical fabrication for engineering prototypes,
-            bespoke sacred art, and volume production.
-          </p>
-
-          {/* Clean Action Buttons */}
-          <div className="mt-6 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-sm sm:max-w-none">
-            <ContactButton label="Contact Studio" onClick={onOpenContact} />
-
-            <a
-              href="#products"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 sm:px-10 sm:py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-[#D7E2EA] hover:text-white text-xs sm:text-sm font-medium uppercase tracking-widest transition-all backdrop-blur-md cursor-pointer text-center"
-            >
-              Explore Collection
-            </a>
+      <div className="relative w-full max-w-7xl mx-auto flex flex-col justify-between flex-1">
+        <motion.div initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="hero-copy max-w-2xl">
+          <h1 className="hero-heading-purple text-[clamp(2.8rem,7vw,6.5rem)] leading-[0.95] tracking-[-0.045em] font-black uppercase">Purple Cube</h1>
+          <h2 className="mt-5 text-2xl sm:text-4xl font-medium leading-tight tracking-tight text-white">Your ideas.<br />Made real in 3D.</h2>
+          <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-[#E2DFE9]">3D printing, personalised miniatures, everyday objects and custom models. Designed with you. Printed with care.</p>
+          <div className="mt-7 flex flex-col min-[400px]:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
+            <ContactButton label="Discuss your idea" onClick={onOpenContact} className="!px-6 !text-xs !py-3.5" />
+            <a href="#products" className="inline-flex justify-center items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-xs font-medium uppercase tracking-wider text-white backdrop-blur-md hover:bg-white/10 transition-colors">Explore products <ArrowUpRight size={15} /></a>
           </div>
         </motion.div>
+
+        <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+          <div className="flex items-center gap-3">
+            <span className="text-[#C77DFF] font-mono text-sm tabular-nums">0{currentIdx + 1}<span className="text-white/40"> / 03</span></span>
+            <div className="h-8 w-px bg-white/20" />
+            <div><p className="text-sm font-medium text-white">{activeMedia.label}</p><p className="mt-1 text-[11px] text-[#C6C1D0]">{activeMedia.detail}</p></div>
+          </div>
+          <div role="group" aria-label="Hero slideshow controls" className="flex items-center gap-1">
+            {HERO_BACKGROUNDS.map((slide, index) => (
+              <button key={slide.id} type="button" aria-label={`Show slide ${index + 1}: ${slide.detail}`} aria-pressed={currentIdx === index} onClick={() => setCurrentIdx(index)} className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+                <span className={`h-1 rounded-full transition-all duration-300 ${currentIdx === index ? 'w-7 bg-[#C77DFF]' : 'w-3 bg-white/40'}`} />
+              </button>
+            ))}
+            {!reducedMotion && <button type="button" aria-label={paused ? 'Play slideshow' : 'Pause slideshow'} onClick={() => setPaused(!paused)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10">{paused ? <Play size={13} /> : <Pause size={13} />}</button>}
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+          {journeys.map(({ href, icon: Icon, title, detail }) => (
+            <a key={href} href={href} className="journey-card group flex items-start gap-3 rounded-2xl border border-white/15 bg-[#15121D]/85 p-3.5 sm:p-5 backdrop-blur-xl transition-all hover:border-[#B879F2]/65 hover:bg-[#241630]">
+              <Icon size={20} strokeWidth={1.5} className="hidden sm:block shrink-0 text-[#CF9DF8] mt-0.5" />
+              <div className="min-w-0 flex-1"><span className="block text-xs sm:text-sm font-medium text-white">{title}</span><span className="mt-1 block text-[10px] sm:text-xs leading-relaxed text-[#C7C0D2]">{detail}</span></div>
+              <ArrowUpRight size={14} className="shrink-0 text-[#C77DFF]" />
+            </a>
+          ))}
+        </div>
+        <p className="mt-3 text-right text-[9px] sm:text-[10px] text-white/50">AI-generated concept imagery</p>
       </div>
     </section>
   );
