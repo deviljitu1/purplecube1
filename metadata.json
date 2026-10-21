@@ -1,0 +1,6 @@
+{
+  "name": "Purple Cube — 3D Printing Studio",
+  "description": "High-quality 3D printing studio featuring ready-made products, personalized miniatures, live custom product previewer, custom STL/3MF slicing quote calculator, and corporate bulk manufacturing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

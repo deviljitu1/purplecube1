@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Radiant Violet Inner Glow (No dark muddy black!) -->
+    <radialGradient id="vibrantCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor="#8A2BE2" stopOpacity="0.45" />
+      <stop offset="60%" stopColor="#5A189A" stopOpacity="0.25" />
+      <stop offset="100%" stopColor="#240046" stopOpacity="0" />
+    </radialGradient>
+
+    <!-- Electric Neon Ring -->
+    <linearGradient id="neonRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FFFFFF" />
+      <stop offset="30%" stopColor="#F5D0FE" />
+      <stop offset="60%" stopColor="#D946EF" />
+      <stop offset="100%" stopColor="#9333EA" />
+    </linearGradient>
+
+    <!-- 3D Cube: Top Face (Pure Radiance) -->
+    <linearGradient id="cubeTopBright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FFFFFF" />
+      <stop offset="40%" stopColor="#F5D0FE" />
+      <stop offset="80%" stopColor="#E879F9" />
+      <stop offset="100%" stopColor="#C084FC" />
+    </linearGradient>
+
+    <!-- 3D Cube: Front-Left "P" Face (Vivid Magenta / Purple) -->
+    <linearGradient id="pFaceBright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#F0ABFC" />
+      <stop offset="30%" stopColor="#E879F9" />
+      <stop offset="70%" stopColor="#C084FC" />
+      <stop offset="100%" stopColor="#A855F7" />
+    </linearGradient>
+
+    <!-- 3D Cube: Right Face (Deep Lustrous Violet) -->
+    <linearGradient id="cubeRightBright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#C084FC" />
+      <stop offset="45%" stopColor="#9333EA" />
+      <stop offset="100%" stopColor="#6B21A8" />
+    </linearGradient>
+
+    <!-- Inner Cavity Depth -->
+    <linearGradient id="innerCavity" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#581C87" />
+      <stop offset="100%" stopColor="#3B0764" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Radiant Glow -->
+  <circle cx="100" cy="100" r="94" fill="url(#vibrantCore)" />
+
+  <!-- Outer Luminous Neon Ring (No heavy black border!) -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="url(#neonRingGrad)" stroke-width="4.5" />
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="1.2" />
+
+  <!-- ==================== 3D ISOMETRIC "P" CUBE ==================== -->
+  <g transform="translate(0, -2)">
+    <!-- Inner Cavity Left Wall -->
+    <polygon points="100,56 74,70 74,102 100,88" fill="url(#innerCavity)" stroke="#A855F7" stroke-width="0.8" />
+    <!-- Inner Cavity Right Wall -->
+    <polygon points="100,56 126,70 126,102 100,88" fill="#4C1D95" stroke="#C084FC" stroke-width="0.8" />
+    <!-- Inner Floor Glow -->
+    <polygon points="74,102 100,88 126,102 100,116" fill="#9333EA" />
+
+    <!-- Top Solid Rim / Frame -->
+    <polygon points="100,38 52,64 74,74 100,60" fill="url(#cubeTopBright)" stroke="#FFFFFF" stroke-width="1" />
+    <polygon points="100,38 148,64 126,74 100,60" fill="url(#cubeTopBright)" stroke="#FFFFFF" stroke-width="1" />
+    <polygon points="148,64 126,74 126,92 148,80" fill="#A855F7" stroke="#F0ABFC" stroke-width="0.8" />
+
+    <!-- Cube Right Outer Wall -->
+    <polygon points="100,154 148,128 148,64 100,90" fill="url(#cubeRightBright)" stroke="#D8B4FE" stroke-width="0.8" />
+    <!-- Crisp specular vertical edge highlight -->
+    <line x1="148" y1="64" x2="148" y2="128" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Cube Front-Left Face: Styled as the Letter "P" -->
+    <!-- Outer vertical left spine of P -->
+    <polygon points="52,64 74,74 74,128 52,118" fill="url(#pFaceBright)" stroke="#FFFFFF" stroke-width="0.8" />
+    <!-- Bottom front corner return of P -->
+    <polygon points="74,128 100,142 100,154 52,128 52,118" fill="url(#pFaceBright)" />
+
+    <!-- "P" Head Upper Block -->
+    <polygon points="52,64 100,90 100,116 78,104 78,92 52,78" fill="url(#pFaceBright)" stroke="#FFFFFF" stroke-width="0.6" />
+    <!-- "P" Inner Cutout / Loop Hole -->
+    <polygon points="78,92 92,100 92,112 78,104" fill="#240046" stroke="#F5D0FE" stroke-width="1.2" />
+
+    <!-- Vertical Stem of "P" reaching inward -->
+    <polygon points="78,104 100,116 100,154 86,146 86,116 78,110" fill="url(#pFaceBright)" stroke="#E879F9" stroke-width="0.6" />
+
+    <!-- Pure White Razor-Sharp Highlights -->
+    <polyline points="52,64 100,38 148,64" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <polyline points="100,38 100,60" fill="none" stroke="#FFFFFF" stroke-width="1.6" />
+    <polyline points="52,64 52,128" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    <polyline points="100,90 100,154" fill="none" stroke="#FFFFFF" stroke-width="2.2" />
+    <polyline points="52,118 100,142 148,118" fill="none" stroke="#F5D0FE" stroke-width="1.2" />
+  </g>
+</svg>

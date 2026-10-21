@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logo Render</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 800px;
+      height: 800px;
+      overflow: hidden;
+    }
+    .badge {
+      position: relative;
+      width: 780px;
+      height: 780px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, #150228 0%, #0a0114 50%, #020005 85%, #000000 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 8px solid #9d4edd;
+      box-shadow: 
+        0 0 25px rgba(157, 78, 221, 0.7),
+        inset 0 0 35px rgba(157, 78, 221, 0.4);
+    }
+    .badge-ring-outer {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 3px solid #7b2cbf;
+      opacity: 0.85;
+      box-shadow: 0 0 15px rgba(123, 44, 191, 0.6);
+      pointer-events-none;
+    }
+
+    /* Ambient neon glow under the 3D cube */
+    .cube-aura {
+      position: absolute;
+      top: 360px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 440px;
+      height: 240px;
+      background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.85) 0%, rgba(126, 34, 206, 0.5) 45%, transparent 75%);
+      filter: blur(32px);
+      border-radius: 50%;
+      pointer-events-none;
+    }
+
+    .cube-box {
+      position: relative;
+      margin-top: -30px;
+      width: 360px;
+      height: 360px;
+      z-index: 2;
+    }
+
+    .typography {
+      margin-top: -10px;
+      text-align: center;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .title-purple {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      background: linear-gradient(180deg, #f5d0fe 0%, #d946ef 35%, #a855f7 75%, #7e22ce 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.65));
+      line-height: 1.05;
+      padding-left: 0.16em;
+    }
+
+    .title-cube {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 68px;
+      font-weight: 900;
+      letter-spacing: 0.26em;
+      color: #ffffff;
+      line-height: 1.05;
+      padding-left: 0.26em;
+      position: relative;
+      text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    }
+
+    .cube-e-bar {
+      position: absolute;
+      top: 15px;
+      right: 28px;
+      width: 34px;
+      height: 7.5px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #f0abfc, #c084fc);
+      box-shadow: 0 0 12px #e879f9;
+    }
+
+    .tagline {
+      margin-top: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.38em;
+      color: #e2e8f0;
+      padding-left: 0.38em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dot {
+      color: #c084fc;
+      font-size: 18px;
+      text-shadow: 0 0 8px #c084fc;
+    }
+  </style>
+</head>
+<body>
+  <div class="badge">
+    <div class="badge-ring-outer"></div>
+    <div class="cube-aura"></div>
+
+    <div class="cube-box">
+      <!-- High-Fidelity Solid 3D Hollow "P" Cube -->
+      <svg viewBox="0 0 360 360" width="360" height="360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Top Bevel Gradients -->
+          <linearGradient id="topRimLight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#f5d0fe" />
+            <stop offset="65%" stop-color="#d946ef" />
+            <stop offset="100%" stop-color="#9333ea" />
+          </linearGradient>
+
+          <!-- Hollow Inner Cavity Gradients (Illuminated depth) -->
+          <linearGradient id="innerLeftWall" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#581c87" />
+            <stop offset="100%" stop-color="#240046" />
+          </linearGradient>
+          <linearGradient id="innerRightWall" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7e22ce" />
+            <stop offset="100%" stop-color="#3b0764" />
+          </linearGradient>
+
+          <!-- Front "P" Face Gradients (Vibrant Metallic Purple) -->
+          <linearGradient id="pFaceMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f5d0fe" />
+            <stop offset="20%" stop-color="#e879f9" />
+            <stop offset="60%" stop-color="#a855f7" />
+            <stop offset="100%" stop-color="#7e22ce" />
+          </linearGradient>
+
+          <!-- Right Wall Metallic Gradient -->
+          <linearGradient id="rightWallMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#a855f7" />
+            <stop offset="35%" stop-color="#7e22ce" />
+            <stop offset="70%" stop-color="#581c87" />
+            <stop offset="100%" stop-color="#240046" />
+          </linearGradient>
+
+          <!-- "P" Inner Loop Shading -->
+          <linearGradient id="pInnerDepth" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3b0764" />
+            <stop offset="100%" stop-color="#140222" />
+          </linearGradient>
+        </defs>
+
+        <!-- 1. Hollow Interior Depth (Inside the Box) -->
+        <!-- Left Inner Wall -->
+        <polygon points="180,95 130,125 130,190 180,160" fill="url(#innerLeftWall)" stroke="#9333ea" stroke-width="0.8" />
+        <!-- Right Inner Wall -->
+        <polygon points="180,95 230,125 230,190 180,160" fill="url(#innerRightWall)" stroke="#c084fc" stroke-width="0.8" />
+        <!-- Inner Cavity Floor (Glow reflection) -->
+        <polygon points="130,190 180,160 230,190 180,220" fill="#a855f7" />
+
+        <!-- 2. Solid Top Rim Frame (Beveled Box Opening) -->
+        <!-- Top Back-Left Bevel -->
+        <polygon points="180,55 90,108 130,132 180,104" fill="url(#topRimLight)" stroke="#ffffff" stroke-width="1.2" />
+        <!-- Top Back-Right Bevel -->
+        <polygon points="180,55 270,108 230,132 180,104" fill="url(#topRimLight)" stroke="#ffffff" stroke-width="1.2" />
+        <!-- Top Front-Right Corner Cut -->
+        <polygon points="270,108 230,132 230,166 270,142" fill="#7e22ce" stroke="#d946ef" stroke-width="0.8" />
+
+        <!-- 3. Right Outer Solid Face -->
+        <polygon points="180,278 270,225 270,108 180,162" fill="url(#rightWallMetallic)" stroke="#c084fc" stroke-width="1" />
+        <!-- Specular highlight on right corner -->
+        <line x1="270" y1="108" x2="270" y2="225" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+
+        <!-- 4. Front-Left "P" Structured Face -->
+        <!-- Vertical Spine of P -->
+        <polygon points="90,108 130,132 130,225 90,202" fill="url(#pFaceMetallic)" stroke="#ffffff" stroke-width="1" />
+        <!-- Bottom Corner Connector -->
+        <polygon points="130,225 180,254 180,278 90,225 90,202" fill="url(#pFaceMetallic)" />
+
+        <!-- Top Loop of P -->
+        <polygon points="90,108 180,162 180,210 140,186 140,166 90,136" fill="url(#pFaceMetallic)" stroke="#ffffff" stroke-width="0.8" />
+        <!-- Cutout hole inside P -->
+        <polygon points="140,166 164,180 164,198 140,186" fill="url(#pInnerDepth)" stroke="#f0abfc" stroke-width="1.5" />
+        <!-- Center downward stem of P -->
+        <polygon points="140,186 180,210 180,278 156,264 156,210 140,200" fill="url(#pFaceMetallic)" stroke="#d946ef" stroke-width="0.8" />
+
+        <!-- 5. Brilliant White Glowing Specular Highlights -->
+        <polyline points="90,108 180,55 270,108" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        <polyline points="180,55 180,104" fill="none" stroke="#ffffff" stroke-width="2" />
+        <polyline points="90,108 90,202" fill="none" stroke="#ffffff" stroke-width="2.8" />
+        <polyline points="180,162 180,278" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+        <polyline points="90,202 180,254 270,202" fill="none" stroke="#f5d0fe" stroke-width="1.5" />
+      </svg>
+    </div>
+
+    <!-- Authentic Studio Typography -->
+    <div class="typography">
+      <div class="title-purple">PURPLE</div>
+      <div class="title-cube">
+        CUBE
+        <div class="cube-e-bar"></div>
+      </div>
+      <div class="tagline">
+        <span>THINK</span>
+        <span class="dot">&bull;</span>
+        <span>DESIGN</span>
+        <span class="dot">&bull;</span>
+        <span>PRINT</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

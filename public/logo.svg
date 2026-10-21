@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Vibrant Background Radial Gradient with Radiant Purple Core -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor="#4A107A" />
+      <stop offset="45%" stopColor="#2A084E" />
+      <stop offset="80%" stopColor="#140326" />
+      <stop offset="100%" stopColor="#0B0116" />
+    </radialGradient>
+
+    <!-- Radiant Ambient Floor Aura -->
+    <radialGradient id="floorAura" cx="50%" cy="56%" r="38%">
+      <stop offset="0%" stopColor="#C084FC" stopOpacity="0.95" />
+      <stop offset="35%" stopColor="#A855F7" stopOpacity="0.7" />
+      <stop offset="70%" stopColor="#7E22CE" stopOpacity="0.3" />
+      <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+    </radialGradient>
+
+    <!-- Ultra-Luminous Outer Ring Gradient -->
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#F5D0FE" />
+      <stop offset="25%" stopColor="#E879F9" />
+      <stop offset="50%" stopColor="#C084FC" />
+      <stop offset="75%" stopColor="#9333EA" />
+      <stop offset="100%" stopColor="#F0ABFC" />
+    </linearGradient>
+
+    <!-- 3D Cube: Top Glossy Bevel -->
+    <linearGradient id="cubeTop" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stopColor="#FFFFFF" />
+      <stop offset="30%" stopColor="#F0ABFC" />
+      <stop offset="70%" stopColor="#D946EF" />
+      <stop offset="100%" stopColor="#A855F7" />
+    </linearGradient>
+
+    <!-- 3D Cube: Inner Hollow Cavity Walls -->
+    <linearGradient id="innerLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#581C87" />
+      <stop offset="100%" stopColor="#2E1065" />
+    </linearGradient>
+
+    <linearGradient id="innerRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#7E22CE" />
+      <stop offset="100%" stopColor="#3B0764" />
+    </linearGradient>
+
+    <!-- Front Left "P" Face - Bright Vivid Violet/Magenta -->
+    <linearGradient id="pFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#E879F9" />
+      <stop offset="40%" stopColor="#C084FC" />
+      <stop offset="80%" stopColor="#9333EA" />
+      <stop offset="100%" stopColor="#7E22CE" />
+    </linearGradient>
+
+    <!-- "P" Head Upper Block -->
+    <linearGradient id="pLeg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#F5D0FE" />
+      <stop offset="50%" stopColor="#D946EF" />
+      <stop offset="100%" stopColor="#A855F7" />
+    </linearGradient>
+
+    <!-- Cube Right Outer Wall -->
+    <linearGradient id="cubeRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#A855F7" />
+      <stop offset="45%" stopColor="#7E22CE" />
+      <stop offset="100%" stopColor="#4C1D95" />
+    </linearGradient>
+
+    <!-- Text Purple Gradient -->
+    <linearGradient id="purpleText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#F5D0FE" />
+      <stop offset="50%" stopColor="#E879F9" />
+      <stop offset="100%" stopColor="#C084FC" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Circle Badge with Radiant Purple Glow -->
+  <circle cx="250" cy="250" r="236" fill="url(#bgGlow)" />
+
+  <!-- High-Luminance Ambient Floor Aura Under Cube -->
+  <ellipse cx="250" cy="275" rx="140" ry="65" fill="url(#floorAura)" />
+
+  <!-- Ultra-Bright Neon Ring -->
+  <circle cx="250" cy="250" r="230" fill="none" stroke="url(#ringGrad)" stroke-width="7" />
+  <circle cx="250" cy="250" r="230" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="1.8" />
+  <circle cx="250" cy="250" r="234" fill="none" stroke="#E879F9" stroke-opacity="0.4" stroke-width="2.5" />
+
+  <!-- ==================== 3D ISOMETRIC "P" CUBE ==================== -->
+  <g transform="translate(0, -12)">
+    <!-- Inner Hollow Cavity (Depth) -->
+    <!-- Inside Left Wall -->
+    <polygon points="250,118 206,142 206,192 250,168" fill="url(#innerLeft)" stroke="#A855F7" stroke-width="0.5" />
+    <!-- Inside Right Wall -->
+    <polygon points="250,118 294,142 294,192 250,168" fill="url(#innerRight)" stroke="#C084FC" stroke-width="0.5" />
+    <!-- Inside Bottom Floor Glow -->
+    <polygon points="206,192 250,168 294,192 250,216" fill="#7E22CE" />
+
+    <!-- Top Solid Rim / Frame -->
+    <!-- Top Back-Left Bevel -->
+    <polygon points="250,88 174,130 206,148 250,124" fill="url(#cubeTop)" stroke="#FFFFFF" stroke-width="1" />
+    <!-- Top Back-Right Bevel -->
+    <polygon points="250,88 326,130 294,148 250,124" fill="url(#cubeTop)" stroke="#FFFFFF" stroke-width="1" />
+    <!-- Top Front-Right Bevel -->
+    <polygon points="326,130 294,148 294,175 326,155" fill="#A855F7" stroke="#E879F9" stroke-width="0.5" />
+
+    <!-- Cube Right Outer Wall -->
+    <polygon points="250,285 326,242 326,130 250,172" fill="url(#cubeRight)" stroke="#C084FC" stroke-width="0.8" />
+    <!-- Crisp specular vertical edge highlight -->
+    <line x1="326" y1="130" x2="326" y2="242" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.9" />
+
+    <!-- Cube Front-Left Face: Styled as the Letter "P" -->
+    <!-- Outer vertical left spine of P -->
+    <polygon points="174,130 206,148 206,242 174,224" fill="url(#pFace)" stroke="#F5D0FE" stroke-width="0.8" />
+    <!-- Bottom front corner return of P -->
+    <polygon points="206,242 250,266 250,285 174,242 174,224" fill="url(#pFace)" />
+
+    <!-- "P" Head Upper Block -->
+    <polygon points="174,130 250,172 250,218 214,198 214,178 174,156" fill="url(#pLeg)" stroke="#F0ABFC" stroke-width="0.5" />
+    <!-- "P" Inner Cutout / Loop Hole -->
+    <polygon points="214,178 238,191 238,212 214,198" fill="#1E0533" stroke="#E879F9" stroke-width="1.2" />
+
+    <!-- Vertical Stem of "P" reaching inward -->
+    <polygon points="214,198 250,218 250,285 228,272 228,218 214,210" fill="url(#pFace)" stroke="#C084FC" stroke-width="0.6" />
+
+    <!-- Bright Razor-Sharp Specular Rim Highlights -->
+    <polyline points="174,130 250,88 326,130" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+    <polyline points="250,88 250,124" fill="none" stroke="#FFFFFF" stroke-width="1.6" />
+    <polyline points="174,130 174,242" fill="none" stroke="#FFFFFF" stroke-width="1.6" />
+    <polyline points="250,172 250,285" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-opacity="0.85" />
+    <polyline points="174,224 250,266 326,224" fill="none" stroke="#E879F9" stroke-width="1.2" stroke-opacity="0.75" />
+  </g>
+
+  <!-- ==================== VIBRANT TYPOGRAPHY ==================== -->
+  <!-- "PURPLE" -->
+  <text x="250" y="348" text-anchor="middle" font-family="'Kanit', 'Arial Black', sans-serif" font-weight="900" font-size="45" letter-spacing="13" fill="url(#purpleText)">
+    PURPLE
+  </text>
+
+  <!-- "CUBE" with bright magenta top accent on E -->
+  <g transform="translate(0, 0)">
+    <text x="250" y="402" text-anchor="middle" font-family="'Kanit', 'Arial Black', sans-serif" font-weight="900" font-size="47" letter-spacing="15" fill="#FFFFFF">
+      CUBE
+    </text>
+    <!-- Top accent bar over E as seen in official emblem -->
+    <rect x="318" y="365" width="22" height="4.5" rx="2" fill="#F0ABFC" />
+    <rect x="318" y="365" width="22" height="4.5" rx="2" stroke="#FFFFFF" stroke-width="0.8" />
+  </g>
+
+  <!-- Subtitle: "THINK • DESIGN • PRINT" in High Contrast -->
+  <text x="250" y="432" text-anchor="middle" font-family="'Kanit', sans-serif" font-weight="600" font-size="12" letter-spacing="6" fill="#F8FAFC">
+    THINK  •  DESIGN  •  PRINT
+  </text>
+</svg>
