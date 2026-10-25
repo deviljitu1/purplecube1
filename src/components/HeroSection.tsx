@@ -28,10 +28,10 @@ export const HERO_BACKGROUNDS: BackgroundMediaItem[] = [
 ];
 
 const journeys = [
-  { href: '#products', icon: Box, title: 'Explore products', detail: 'Objects for everyday life' },
-  { href: '#personalised', icon: Fingerprint, title: 'Make it personal', detail: 'Miniatures & custom gifts' },
-  { href: '#upload', icon: Upload, title: 'Print your file', detail: 'Share a model. Get a quote.' },
-  { href: '#corporate', icon: Layers3, title: 'Create in bulk', detail: 'For teams, brands & events' },
+  { href: '#products', icon: Box, title: 'Explore products', compactTitle: 'Browse gifts', detail: 'Objects for everyday life' },
+  { href: '#personalised', icon: Fingerprint, title: 'Make it personal', compactTitle: 'Personalise', detail: 'Miniatures & custom gifts' },
+  { href: '#upload', icon: Upload, title: 'Print your file', compactTitle: 'Print a file', detail: 'Share a model. Get a quote.' },
+  { href: '#corporate', icon: Layers3, title: 'Create in bulk', compactTitle: 'Bulk orders', detail: 'For teams, brands & events' },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
@@ -72,8 +72,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
           <h2 className="mt-5 text-2xl sm:text-4xl font-medium leading-tight tracking-tight text-white">Your ideas.<br />Made real in 3D.</h2>
           <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-[#E2DFE9]">3D printing, personalised miniatures, everyday objects and custom models. Designed with you. Printed with care.</p>
           <div className="mt-7 flex flex-col min-[400px]:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
-            <ContactButton label="Discuss your idea" onClick={onOpenContact} className="!px-6 !text-xs !py-3.5" />
-            <a href="#products" className="inline-flex justify-center items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-xs font-medium uppercase tracking-wider text-white backdrop-blur-md hover:bg-white/10 transition-colors">Explore products <ArrowUpRight size={15} /></a>
+            <ContactButton label="Discuss your idea" onClick={onOpenContact} className="!px-6 !text-sm !py-3.5" />
+            <a href="#products" className="inline-flex justify-center items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-medium uppercase tracking-wider text-white backdrop-blur-md hover:bg-white/10 transition-colors">Explore products <ArrowUpRight size={15} /></a>
           </div>
         </motion.div>
 
@@ -93,16 +93,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
-          {journeys.map(({ href, icon: Icon, title, detail }) => (
-            <a key={href} href={href} className="journey-card group flex items-start gap-3 rounded-2xl border border-white/15 bg-[#15121D]/85 p-3.5 sm:p-5 backdrop-blur-xl transition-all hover:border-[#B879F2]/65 hover:bg-[#241630]">
+        <div className="mt-4 sm:mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+          {journeys.map(({ href, icon: Icon, title, compactTitle, detail }) => (
+            <a key={href} href={href} className="journey-card group flex min-h-11 items-center sm:items-start gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-white/15 bg-[#15121D]/85 px-3 py-2.5 sm:p-5 backdrop-blur-xl transition-all hover:border-[#B879F2]/65 hover:bg-[#241630]">
               <Icon size={20} strokeWidth={1.5} className="hidden sm:block shrink-0 text-[#CF9DF8] mt-0.5" />
-              <div className="min-w-0 flex-1"><span className="block text-xs sm:text-sm font-medium text-white">{title}</span><span className="mt-1 block text-[10px] sm:text-xs leading-relaxed text-[#C7C0D2]">{detail}</span></div>
+              <div className="min-w-0 flex-1"><span className="block text-xs sm:text-sm font-medium text-white"><span className="sm:hidden">{compactTitle}</span><span className="hidden sm:inline">{title}</span></span><span className="mt-1 hidden sm:block text-xs leading-relaxed text-[#C7C0D2]">{detail}</span></div>
               <ArrowUpRight size={14} className="shrink-0 text-[#C77DFF]" />
             </a>
           ))}
         </div>
-        <p className="mt-3 text-right text-[9px] sm:text-[10px] text-white/50">AI-generated concept imagery</p>
       </div>
     </section>
   );

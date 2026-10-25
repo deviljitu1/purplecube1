@@ -95,15 +95,15 @@ const ProjectCard: React.FC<{
               {project.number}
             </span>
             <div className="flex flex-col">
-              <span className="text-xs uppercase tracking-widest text-[#9D4EDD] font-mono font-medium">
-                ({project.category})
-              </span>
               <h3
                 className="font-bold uppercase text-white tracking-tight leading-snug"
-                style={{ fontSize: 'clamp(1.1rem, 2.5vw, 2rem)' }}
+
               >
                 {project.name}
               </h3>
+              <span className="mt-1 text-xs uppercase tracking-widest text-[#9D4EDD] font-mono font-medium">
+                ({project.category})
+              </span>
             </div>
           </div>
 
@@ -171,19 +171,15 @@ export const ProjectsSection: React.FC = () => {
     >
       <div className="max-w-5xl mx-auto mb-14 text-center">
         <FadeIn delay={0} y={30}>
-          <span className="text-xs uppercase tracking-widest text-[#9D4EDD] font-mono px-3.5 py-1.5 rounded-full bg-[#180828] border border-[#9D4EDD]/30 inline-block mb-3">
-            Design Possibilities
-          </span>
           <h2
             className="hero-heading font-black uppercase text-center leading-none tracking-tight select-none"
-            style={{ fontSize: 'clamp(2.8rem, 9vw, 120px)' }}
+
           >
             Projects
           </h2>
           <p className="text-sm sm:text-base text-[#D7E2EA]/70 font-light mt-3 max-w-xl mx-auto">
             Explore what you could create: scale models, detailed sculptures and functional mechanisms.
           </p>
-          <p className="mt-3 text-xs text-[#C3B3D2]">AI-generated concept gallery. Discuss your own design with the studio.</p>
         </FadeIn>
       </div>
 

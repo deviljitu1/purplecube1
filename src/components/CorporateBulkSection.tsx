@@ -32,7 +32,6 @@ export const CorporateBulkSection: React.FC = () => {
     <section id="corporate" className="px-5 sm:px-8 md:px-12 py-16 sm:py-20 border-t border-white/[0.06] bg-[#0F0C13]">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-14 items-center">
         <FadeIn>
-          <span className="text-xs font-mono uppercase tracking-widest text-[#C77DFF]">For teams & bigger ideas</span>
           <h2 className="hero-heading mt-3 text-3xl sm:text-4xl font-bold tracking-tight">Make something<br />worth sharing.</h2>
           <div role="group" aria-label="Bulk order type" className="flex flex-wrap gap-2 mt-6">{sectors.map((item) => <button key={item.name} type="button" aria-pressed={sector.name === item.name} onClick={() => setSector(item)} className={`rounded-full border px-3.5 py-2.5 text-xs transition-colors ${sector.name === item.name ? 'border-[#C77DFF] bg-[#9D4EDD]/20 text-white' : 'border-white/15 text-[#D7E2EA]/75 hover:text-white'}`}>{item.name}</button>)}</div>
           <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#D7E2EA]/80">{sector.description}</p>

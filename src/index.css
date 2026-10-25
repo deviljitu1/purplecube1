@@ -17,6 +17,31 @@
   }
 }
 
+:root {
+  --type-h1: 48px;
+  --type-h2: 32px;
+  --type-h3: 24px;
+  --type-h4: 14px;
+  --type-body: 16px;
+}
+
+h1 { font-size: var(--type-h1); }
+h2 { font-size: var(--type-h2); }
+h3 { font-size: var(--type-h3); }
+h4, h5, h6 { font-size: var(--type-h4); }
+p { font-size: var(--type-body); }
+input, textarea, select { font-size: 16px; }
+footer a, footer li { font-size: 14px; }
+.gift-collection-heading { font-size: min(var(--type-h2), 6.9vw); }
+
+@media (min-width: 640px) {
+  :root {
+    --type-h1: 80px;
+    --type-h2: 48px;
+    --type-h3: 30px;
+  }
+}
+
 .hero-heading {
   background: linear-gradient(180deg, #FFFFFF 0%, #C8BDD7 100%);
   -webkit-background-clip: text;
@@ -24,6 +49,7 @@
 }
 
 .hero-heading-purple {
+  font-size: min(var(--type-h1), 13.5vw);
   background: linear-gradient(180deg, #FFFFFF 0%, #D7E2EA 40%, #9D4EDD 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -100,7 +126,7 @@ section[id] { scroll-margin-top: 100px; }
   background: linear-gradient(120deg, #751AB6, #9D4EDD);
   box-shadow: 0 6px 24px -8px #9D4EDD80, inset 0 1px 0 #FFFFFF26;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.02em;
   list-style: none;

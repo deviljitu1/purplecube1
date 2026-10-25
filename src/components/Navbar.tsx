@@ -29,12 +29,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   }, []);
 
   const navLinks = [
-    { label: 'Products', href: '#products' },
-    { label: 'Personalise', href: '#personalised' },
-    { label: 'Print a File', href: '#upload' },
-    { label: 'Services', href: '#services' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Corporate', href: '#corporate' },
+    { label: 'Products', href: '/#products' },
+    { label: 'Personalise', href: '/#personalised' },
+    { label: 'Print a File', href: '/#upload' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Projects', href: '/#projects' },
+    { label: 'Corporate', href: '/#corporate' },
   ];
 
   return (
@@ -46,14 +46,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     >
       <nav
         aria-label="Main Navigation"
-        className={`max-w-6xl mx-auto rounded-full px-3.5 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
+        className={`max-w-6xl mx-auto rounded-full px-2.5 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-2 pointer-events-auto transition-all duration-300 ${
           isScrolled
             ? 'bg-[#0C0C0C]/85 backdrop-blur-2xl border border-white/[0.1] shadow-[0_8px_32px_rgba(0,0,0,0.6)]'
             : 'bg-[#0C0C0C]/65 backdrop-blur-xl border border-white/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
         }`}
       >
         {/* Official Purple Cube Logo Emblem with Think • Design • Print */}
-        <a href="#" className="flex items-center gap-3 group shrink-0 select-none">
+        <a href="/" className="flex min-w-0 items-center gap-3 group select-none">
           <PurpleCubeLogo size={42} showText={true} />
         </a>
 
@@ -71,15 +71,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         </div>
 
         {/* Action Buttons: WhatsApp & Direct Contact */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
           <a
             href="https://wa.me/919876543210?text=Hello%20Purple%20Cube!%20I%20am%20interested%20in%203D%20printing%20services."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] text-xs font-mono font-medium tracking-wide transition-all"
+            className="inline-flex h-11 w-11 sm:h-auto sm:w-auto items-center justify-center gap-1.5 sm:px-3 sm:py-1.5 text-[#25D366] hover:opacity-80 text-xs font-mono font-medium tracking-wide transition-opacity"
             title="Chat on WhatsApp"
           >
-            <WhatsAppIcon size={14} color="#25D366" />
+            <WhatsAppIcon size={28} />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
 
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 sm:p-2 rounded-full text-[#D7E2EA] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+            className="lg:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#D7E2EA] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
           >
             {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -156,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full py-3 rounded-2xl bg-[#25D366]/15 border border-[#25D366]/35 text-[#25D366] font-medium uppercase tracking-widest text-center text-xs sm:text-sm flex items-center justify-center gap-2"
               >
-                <WhatsAppIcon size={16} color="#25D366" />
+                <WhatsAppIcon size={16} />
                 <span>WhatsApp Studio</span>
               </a>
             </div>

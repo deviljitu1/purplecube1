@@ -21,7 +21,7 @@ export const PurpleCubeLogo: React.FC<LogoProps> = ({
   showText = false,
 }) => {
   return (
-    <div className={`inline-flex items-center gap-3 select-none ${className}`}>
+    <div className={`inline-flex min-w-0 items-center gap-2 sm:gap-3 select-none ${className}`}>
       {/* Official Authentic Studio Emblem */}
       <div
         className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0"
@@ -37,11 +37,11 @@ export const PurpleCubeLogo: React.FC<LogoProps> = ({
       </div>
 
       {showText && (
-        <div className="flex flex-col leading-none">
-          <span className="font-black tracking-tight text-white uppercase text-base sm:text-lg group-hover:text-[#F0ABFC] transition-colors">
+        <div className="flex min-w-0 flex-col leading-none whitespace-nowrap">
+          <span className="font-black tracking-tight text-white uppercase text-sm sm:text-lg group-hover:text-[#F0ABFC] transition-colors">
             Purple<span className="text-[#C084FC]">Cube</span>
           </span>
-          <span className="text-[9px] sm:text-[10px] tracking-[0.24em] font-mono uppercase text-[#F1F5F9]/85 mt-0.5">
+          <span className="text-[7px] sm:text-[10px] tracking-[0.08em] sm:tracking-[0.24em] font-mono uppercase text-[#F1F5F9]/85 mt-0.5">
             Think &bull; Design &bull; Print
           </span>
         </div>

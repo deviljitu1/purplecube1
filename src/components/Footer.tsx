@@ -40,27 +40,27 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
             </h4>
             <ul className="space-y-2.5 text-xs uppercase tracking-wider text-[#D7E2EA]/70 font-medium">
               <li>
-                <a href="#about" className="hover:text-white transition-colors">
+                <a href="/#about" className="hover:text-white transition-colors">
                   About Purple Cube Studio
                 </a>
               </li>
               <li>
-                <a href="#products" className="hover:text-white transition-colors">
+                <a href="/#products" className="hover:text-white transition-colors">
                   Ready-Made Products
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
+                <a href="/#services" className="hover:text-white transition-colors">
                   Services &amp; Capabilities
                 </a>
               </li>
               <li>
-                <a href="#corporate" className="hover:text-white transition-colors">
+                <a href="/#corporate" className="hover:text-white transition-colors">
                   Corporate &amp; Bulk
                 </a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-white transition-colors">
+                <a href="/#projects" className="hover:text-white transition-colors">
                   Featured Projects
                 </a>
               </li>
@@ -102,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 text-[#25D366] hover:text-[#25D366]/80 transition-colors"
               >
-                <WhatsAppIcon size={15} color="#25D366" />
+                <WhatsAppIcon size={15} />
                 <span>+91 98765 43210 (WhatsApp Direct)</span>
               </a>
               <div className="flex items-center gap-2.5">
@@ -126,14 +126,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
             &copy; {new Date().getFullYear()} Purple Cube 3D &bull; All Rights Reserved.
           </div>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6 text-center">
-            <a href="#about" className="hover:text-white transition-colors">
-              Privacy Policy
+            <a href="/terms-and-conditions" className="hover:text-white transition-colors">
+              Terms &amp; Conditions
             </a>
-            <a href="#corporate" className="hover:text-white transition-colors">
-              Terms of Fabrication
-            </a>
-            <a href="#corporate" className="hover:text-white transition-colors">
-              CAD Confidentiality (NDA)
+            <a href="/return-exchange-policy" className="hover:text-white transition-colors">
+              Return &amp; Exchange Policy
             </a>
           </div>
         </div>

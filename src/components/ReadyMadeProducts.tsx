@@ -3,15 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FadeIn } from './FadeIn.tsx';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronLeft, Upload } from 'lucide-react';
+import { useReducedMotion } from 'motion/react';
 import { WhatsAppIcon } from './WhatsAppIcon.tsx';
+import { PRODUCT_CATEGORIES, type CollectionDesign, type ProductCategoryId } from '../data/productCategories.ts';
+import { CollectionImage } from './CollectionImage.tsx';
+import { DesignPreview } from './DesignPreview.tsx';
 
 export interface Product {
   id: string;
   name: string;
-  category: 'ganpati' | 'desk' | 'vases' | 'fidgets' | 'miniatures' | 'architectural';
+  category: ProductCategoryId;
+  subcategory: string;
   categoryLabel: string;
   rating: number;
   reviewsCount: number;
@@ -27,7 +32,8 @@ export const SAMPLE_PRODUCTS: Product[] = [
   {
     id: 'ganpati-silk-gold',
     name: 'Artisan Vinayaka Idol',
-    category: 'ganpati',
+    category: 'idols',
+    subcategory: 'ganesha',
     categoryLabel: 'Ganpati Idols',
     rating: 4.9,
     reviewsCount: 84,
@@ -45,7 +51,8 @@ export const SAMPLE_PRODUCTS: Product[] = [
   {
     id: 'hex-desk-organizer',
     name: 'Hex Modular Desk Tidy & Pen Stand',
-    category: 'desk',
+    category: 'home',
+    subcategory: 'organisers',
     categoryLabel: 'Desk Organisers',
     rating: 4.8,
     reviewsCount: 42,
@@ -63,7 +70,8 @@ export const SAMPLE_PRODUCTS: Product[] = [
   {
     id: 'voronoi-spiral-vase',
     name: 'Parametric Voronoi Spiral Vase',
-    category: 'vases',
+    category: 'home',
+    subcategory: 'decor',
     categoryLabel: 'Flower Vases',
     rating: 4.9,
     reviewsCount: 67,
@@ -82,6 +90,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
     id: 'kinetic-gyro-fidget',
     name: 'Planetary Gyroscope Kinetic Fidget',
     category: 'fidgets',
+    subcategory: 'kinetic',
     categoryLabel: 'Fidgets',
     rating: 5.0,
     reviewsCount: 119,
@@ -100,6 +109,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
     id: 'cyber-miniature-bust',
     name: 'Cyberpunk Samurai Miniature Bust',
     category: 'miniatures',
+    subcategory: 'anime',
     categoryLabel: 'Miniatures',
     rating: 4.9,
     reviewsCount: 35,
@@ -115,7 +125,8 @@ export const SAMPLE_PRODUCTS: Product[] = [
   {
     id: 'modern-villa-model',
     name: 'Modernist Cantilever Villa Scale Model',
-    category: 'architectural',
+    category: 'models',
+    subcategory: 'architecture',
     categoryLabel: 'Architectural Models',
     rating: 4.9,
     reviewsCount: 18,
@@ -130,25 +141,78 @@ export const SAMPLE_PRODUCTS: Product[] = [
   },
 ];
 
-const CATEGORIES = [
-  { id: 'all', label: 'All Products' },
-  { id: 'ganpati', label: 'Ganpati Idols' },
-  { id: 'desk', label: 'Desk Organisers' },
-  { id: 'vases', label: 'Flower Vases' },
-  { id: 'fidgets', label: 'Kinetic Fidgets' },
-  { id: 'miniatures', label: 'Miniatures' },
-  { id: 'architectural', label: 'Arch Models' },
-];
+const CATEGORIES = [{ id: 'all', label: 'All Categories' }, ...PRODUCT_CATEGORIES];
 
 export const ReadyMadeProducts: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [categoryNavigation, setCategoryNavigation] = useState({ id: 'all', subcategoryId: 'all', revision: 0 });
+  const selectedCategory = categoryNavigation.id;
+  const selectedSubcategory = categoryNavigation.subcategoryId;
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedDesign, setSelectedDesign] = useState<CollectionDesign | null>(null);
+  const [showAllCards, setShowAllCards] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string>('');
+  const categoryView = useRef<HTMLDivElement>(null);
+  const categoryHeading = useRef<HTMLHeadingElement>(null);
+  const designPreviewUrl = useRef<string | undefined>(undefined);
+  const [uploadedDesign, setUploadedDesign] = useState<{ name: string; image?: string; categoryId: string; subcategoryId: string; collection: string } | null>(null);
+  const [designError, setDesignError] = useState('');
+  useEffect(() => () => { if (designPreviewUrl.current) URL.revokeObjectURL(designPreviewUrl.current); }, []);
+  const reducedMotion = useReducedMotion();
+  useEffect(() => {
+    if (!categoryNavigation.revision) return;
+    const frame = requestAnimationFrame(() => {
+      categoryHeading.current?.focus({ preventScroll: true });
+      if (!categoryView.current) return;
+      const header = document.querySelector<HTMLElement>('header:has(nav[aria-label="Main Navigation"])');
+      const headerBottom = header ? header.offsetTop + header.offsetHeight : 88;
+      window.scrollTo({
+        top: Math.max(0, window.scrollY + categoryView.current.getBoundingClientRect().top - headerBottom - 8),
+        behavior: reducedMotion ? 'instant' : 'smooth',
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [categoryNavigation, reducedMotion]);
+  const activeCategory = PRODUCT_CATEGORIES.find((category) => category.id === selectedCategory);
+  const activeSubcategory = activeCategory?.subcategories.find((subcategory) => subcategory.id === selectedSubcategory);
+  const collections = activeSubcategory ? [] : activeCategory?.subcategories ?? PRODUCT_CATEGORIES;
+  const visibleCollections = showAllCards ? collections : collections.slice(0, 3);
+  const visibleDesigns = showAllCards ? activeSubcategory?.designs : activeSubcategory?.designs.slice(0, 3);
+  const totalCards = activeSubcategory?.designs.length ?? collections.length;
+  const activeUploadedDesign = uploadedDesign?.categoryId === selectedCategory && uploadedDesign.subcategoryId === selectedSubcategory ? uploadedDesign : null;
 
-  const filteredProducts =
-    selectedCategory === 'all'
-      ? SAMPLE_PRODUCTS
-      : SAMPLE_PRODUCTS.filter((p) => p.category === selectedCategory);
+  const chooseDesign = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const isImage = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+    if ((!isImage && !/\.(stl|3mf|obj|step|stp)$/i.test(file.name)) || file.size > (isImage ? 10 : 50) * 1024 * 1024) {
+      setDesignError('Choose a JPEG, PNG or WebP image up to 10 MB, or an STL, 3MF, OBJ or STEP file up to 50 MB.');
+      event.target.value = '';
+      return;
+    }
+    setDesignError('');
+    if (designPreviewUrl.current) URL.revokeObjectURL(designPreviewUrl.current);
+    designPreviewUrl.current = isImage ? URL.createObjectURL(file) : undefined;
+    setUploadedDesign({ name: file.name, image: designPreviewUrl.current, categoryId: selectedCategory, subcategoryId: selectedSubcategory, collection: [activeCategory?.label, activeSubcategory?.label].filter(Boolean).join(' / ') || 'Custom print' });
+    event.target.value = '';
+  };
+
+  const removeDesign = () => {
+    if (designPreviewUrl.current) URL.revokeObjectURL(designPreviewUrl.current);
+    designPreviewUrl.current = undefined;
+    setUploadedDesign(null);
+  };
+
+  const chooseCategory = (id: string) => {
+    setShowAllCards(false);
+    setCategoryNavigation((current) => ({ id, subcategoryId: 'all', revision: current.revision + 1 }));
+    setDesignError('');
+  };
+
+  const chooseCollection = (subcategoryId: string) => {
+    setShowAllCards(false);
+    setCategoryNavigation((current) => ({ ...current, subcategoryId, revision: current.revision + 1 }));
+    setDesignError('');
+  };
 
   const openWhatsAppOrder = (product: Product, colorName?: string) => {
     const color = colorName || product.colors[0].name;
@@ -164,30 +228,27 @@ export const ReadyMadeProducts: React.FC = () => {
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#6A0DAD]/10 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
-        <FadeIn y={30}>
+        {!activeCategory && <FadeIn y={30}>
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs uppercase tracking-widest text-[#C77DFF] font-mono px-3.5 py-1.5 rounded-full bg-[#180828] border border-[#9D4EDD]/35 inline-block mb-3">
-              Curated Creations
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight hero-heading mb-4">
-              Explore Our 3D Printed Collection
+            <h2 className="gift-collection-heading whitespace-nowrap tracking-tight hero-heading mb-4">
+              Gifts with a personal touch.
             </h2>
             <p className="text-[#D7E2EA]/80 text-sm sm:text-base font-light">
-              Sculptural pieces, clever desk essentials and objects made your way.
-              Choose a design and talk to us about colours, sizes and finishes.
+              Personalised keepsakes, collectible miniatures and thoughtful gifts.
+              Find a design you love, or share your own idea.
             </p>
           </div>
-        </FadeIn>
+        </FadeIn>}
 
-        {/* Category Filter Tabs */}
-        <div role="group" aria-label="Filter products by category" className="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <div ref={categoryView} role="region" aria-labelledby="category-view-heading" className="mb-10 scroll-mt-24 sm:scroll-mt-28">
+        <div role="group" aria-label="Browse categories" className="flex flex-wrap items-center gap-2 mb-6">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               type="button"
               aria-pressed={selectedCategory === cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3.5 py-3 rounded-full text-[11px] sm:text-xs font-medium tracking-wide whitespace-nowrap transition-all cursor-pointer ${
+              onClick={() => chooseCategory(cat.id)}
+              className={`min-h-11 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium tracking-wide whitespace-nowrap transition-all cursor-pointer ${
                 selectedCategory === cat.id
                   ? 'bg-gradient-to-r from-[#6A0DAD] to-[#9D4EDD] text-white shadow-[0_0_15px_rgba(157,78,221,0.5)]'
                   : 'bg-[#18181E] text-[#D7E2EA]/70 hover:text-white hover:bg-[#25252E] border border-white/5'
@@ -198,54 +259,70 @@ export const ReadyMadeProducts: React.FC = () => {
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredProducts.map((product, idx) => (
-            <FadeIn key={product.id} delay={idx * 0.08} y={30}>
-              <div className="product-card group h-full flex flex-col justify-between rounded-3xl bg-[#121217] border border-white/10 hover:border-[#9D4EDD]/60 transition-all duration-300 p-4 sm:p-5 hover:shadow-[0_10px_35px_-10px_rgba(157,78,221,0.3)]">
-                <div>
-                  {/* Image container */}
-                  <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-[#181820] mb-4">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      loading="lazy"
-                      width={1000}
-                      height={1000}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute top-3 left-3 flex gap-2">
-                      <span className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] uppercase font-mono tracking-wider text-[#C77DFF] border border-[#9D4EDD]/40">
-                        {product.categoryLabel}
-                      </span>
-
-                    </div>
-
-
-                  </div>
-
-                  {/* Header info */}
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <h3 className="font-semibold text-lg text-white group-hover:text-[#C77DFF] transition-colors">
-                      {product.name}
-                    </h3>
-                  </div>
-
-                  <p className="text-sm text-[#D7E2EA]/65 mb-4">{product.material}</p>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => { setSelectedProduct(product); setSelectedColor(product.colors[0].name); }}
-                  className="flex items-center justify-between w-full pt-4 border-t border-white/10 text-sm font-medium text-[#D9B4FA] hover:text-white transition-colors"
-                >
-                  View details <ArrowRight size={16} />
-                </button>
-              </div>
-            </FadeIn>
-          ))}
+          {activeSubcategory && <button type="button" onClick={() => chooseCategory(selectedCategory)} className="inline-flex min-h-11 items-center gap-1.5 mb-2 text-sm text-[#D9B4FA] hover:text-white"><ChevronLeft size={16} /> {activeCategory?.label} collections</button>}
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <h2 id="category-view-heading" ref={categoryHeading} tabIndex={-1} className={`${activeCategory ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'} font-semibold text-white focus:outline-none`}>{activeSubcategory?.label ?? activeCategory?.label ?? 'All Categories'}</h2>
+              <p className="mt-2 text-xs sm:text-sm text-[#D7E2EA]/75">{activeSubcategory ? 'Choose a design, then discuss size, finish and pricing on WhatsApp.' : activeCategory ? 'Choose a collection to view designs, or add your own.' : 'Choose a category to discover what you can create.'}</p>
+            </div>
+            {activeSubcategory && <span className="shrink-0 text-sm text-[#C77DFF]">{activeSubcategory.designs.length} designs</span>}
+          </div>
+          <div id="collection-cards" key={`${selectedCategory}-${selectedSubcategory}`} role="group" aria-label={activeSubcategory ? `${activeSubcategory.label} designs` : activeCategory ? `${activeCategory.label} subcategories` : 'Product collections'} className="mx-auto grid max-w-5xl grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {visibleCollections.map((collection) => {
+              const cardClass = `group relative flex min-w-0 w-full flex-col rounded-2xl overflow-hidden border-2 bg-[#151019] text-left transition-colors cursor-pointer ${activeCategory && selectedSubcategory === collection.id ? 'border-[#C77DFF]' : 'border-white/10 hover:border-[#9D4EDD]'}`;
+              const content = <>
+                <CollectionImage src={collection.image} fit={collection.imageFit} />
+                <span className="flex h-[92px] flex-col items-start justify-between gap-2 p-2 sm:p-2.5">
+                  <span className="block text-sm sm:text-base font-semibold text-white leading-tight">{collection.label}</span>
+                  <span className="mt-1 inline-flex min-h-7 items-center gap-1 rounded-full border border-[#C77DFF]/40 bg-[#9D4EDD]/20 px-2 py-0.5 text-xs font-medium text-[#E9D3FF] group-hover:bg-[#9D4EDD]/40">
+                    {activeCategory ? 'View designs' : 'Explore'}<ArrowRight size={12} className="shrink-0" />
+                  </span>
+                </span>
+              </>;
+              return <button key={collection.id} type="button" aria-label={activeCategory ? `View ${collection.label} designs` : `Explore ${collection.label}`} className={cardClass} onClick={() => activeCategory ? chooseCollection(collection.id) : chooseCategory(collection.id)}>{content}</button>;
+            })}
+            {visibleDesigns?.map((design) => (
+              <button key={design.id} type="button" aria-label={`View ${design.name}`}
+                onClick={() => {
+                  const product = SAMPLE_PRODUCTS.find((item) => item.id === design.productId);
+                  if (product) { setSelectedProduct(product); setSelectedColor(product.colors[0].name); }
+                  else setSelectedDesign(design);
+                }}
+                className="group relative flex w-full flex-col overflow-hidden rounded-2xl border-2 border-white/10 bg-[#151019] text-left hover:border-[#9D4EDD] transition-colors">
+                <CollectionImage src={design.image} alt={design.name} fit={design.imageFit} />
+                <span className="flex h-[92px] flex-col items-start justify-between gap-2 p-2 sm:p-2.5">
+                  <span className="line-clamp-2 text-sm sm:text-base font-semibold leading-tight text-white">{design.name}</span>
+                  <span className="inline-flex min-h-7 items-center gap-1 rounded-full border border-[#C77DFF]/40 bg-[#9D4EDD]/20 px-2 py-0.5 text-xs font-medium text-[#E9D3FF]">View design <ArrowRight size={12} /></span>
+                </span>
+              </button>
+            ))}
+            <label className="relative block min-w-0 w-full self-stretch rounded-2xl border-2 border-dashed border-[#C77DFF]/50 bg-[#24142F] text-center cursor-pointer hover:bg-[#321D43] focus-within:outline-2 focus-within:outline-[#C77DFF] focus-within:outline-offset-2 overflow-hidden">
+              <span aria-hidden="true" className="block aspect-square w-full" />
+              <span aria-hidden="true" className="block h-[92px]" />
+              {activeUploadedDesign?.image ? <img src={activeUploadedDesign.image} alt="Your selected design" className="absolute inset-0 h-full w-full object-contain opacity-35" /> : null}
+              <span className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                <Upload size={26} strokeWidth={1.5} className="text-[#D9B4FA]" />
+                <span className="whitespace-nowrap text-sm sm:text-base font-semibold text-white">Add your design</span>
+                <span className="whitespace-nowrap text-[11px] sm:text-xs text-[#D7E2EA]/70 px-1.5">Photo, sketch or 3D file</span>
+              </span>
+              <input type="file" aria-label={`Add your design to ${activeSubcategory?.label ?? activeCategory?.label ?? 'All Categories'}`} accept="image/jpeg,image/png,image/webp,.stl,.3mf,.obj,.step,.stp" onChange={chooseDesign} className="sr-only" />
+            </label>
+          </div>
+          {totalCards > 3 && <div className="mt-5 flex justify-center">
+            <button type="button" aria-controls="collection-cards" aria-expanded={showAllCards} aria-label={`${showAllCards ? 'Show fewer' : 'Show more'} ${activeSubcategory ? 'designs' : 'categories'}`} onClick={() => setShowAllCards((current) => !current)} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#B879F2]/40 bg-[#9D4EDD]/10 px-6 py-2.5 text-sm font-medium text-[#E9D3FF] hover:bg-[#9D4EDD]/25">
+              {showAllCards ? 'Less' : 'More'} <ChevronDown size={16} className={showAllCards ? 'rotate-180' : ''} />
+            </button>
+          </div>}
+          {designError && <p role="alert" className="mt-4 text-xs text-rose-300">{designError}</p>}
+          {activeUploadedDesign && <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-[#9D4EDD]/30 bg-[#1C1325] p-4">
+            <div className="min-w-0"><p className="truncate text-sm text-white">{activeUploadedDesign.name}</p><p className="mt-1 text-xs leading-relaxed text-[#D7E2EA]/70">Selected for {activeUploadedDesign.collection}. Attach the file in WhatsApp to send.</p><button type="button" onClick={removeDesign} className="mt-2 text-xs text-[#D9B4FA] underline underline-offset-4">Remove design</button></div>
+            <a href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Purple Cube! I'd like a custom print for ${activeUploadedDesign.collection}.\nMy design: ${activeUploadedDesign.name}\nI will attach this file in the chat. Please share feasibility and a quotation.`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#9D4EDD] px-5 py-3 text-sm font-medium text-white"><WhatsAppIcon size={16} /> Continue on WhatsApp</a>
+          </div>}
         </div>
+
       </div>
+
+      {selectedDesign && <DesignPreview design={selectedDesign} collection={[activeCategory?.label, activeSubcategory?.label].filter(Boolean).join(' / ')} onClose={() => setSelectedDesign(null)} />}
 
       {/* Quick View Modal */}
       {selectedProduct && (

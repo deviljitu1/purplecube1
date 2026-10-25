@@ -62,12 +62,8 @@ export const ServicesSection: React.FC = () => {
         {/* Section Header */}
         <FadeIn delay={0} y={30}>
           <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
-            <span className="text-xs uppercase tracking-widest text-[#9D4EDD] font-mono px-3.5 py-1.5 rounded-full bg-[#180828] border border-[#9D4EDD]/30 inline-block mb-3">
-              Studio Capabilities
-            </span>
             <h2
               className="hero-heading font-black uppercase text-center leading-none tracking-tight select-none"
-              style={{ fontSize: 'clamp(2.8rem, 9vw, 120px)' }}
             >
               Services
             </h2>
@@ -88,10 +84,10 @@ export const ServicesSection: React.FC = () => {
                     {service.number}
                   </span>
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-white group-hover:text-[#C77DFF] transition-colors">
+                    <h3 className="font-bold uppercase tracking-tight text-white group-hover:text-[#C77DFF] transition-colors">
                       {service.name}
                     </h3>
-                    <span className="text-xs font-mono text-[#D7E2EA]/50 block mt-1">
+                    <span className="text-sm font-mono text-[#D7E2EA]/50 block mt-1">
                       {service.highlight}
                     </span>
                   </div>

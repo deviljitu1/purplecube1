@@ -42,7 +42,6 @@ export const PersonalizedSection: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <div className="max-w-xl mb-9">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#C77DFF]">Made just for you</span>
             <h2 className="hero-heading mt-3 text-3xl sm:text-4xl font-bold tracking-tight">A little more personal.</h2>
             <p className="mt-3 text-sm sm:text-base text-[#D7E2EA]/80">Turn a photograph into a keepsake, or put your name on an everyday favourite.</p>
           </div>
