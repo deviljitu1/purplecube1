@@ -34,7 +34,7 @@ export const PersonalizedSection: React.FC = () => {
     setPhotos(photoUrls.current);
   };
 
-  const enquire = (text: string) => window.open(`https://wa.me/919876543210?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  const enquire = (text: string) => window.open(`https://wa.me/919111190181?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
   const field = 'w-full rounded-xl border border-white/15 bg-[#18151F] px-3 py-3 text-sm text-white focus:border-[#C77DFF]';
 
   return (

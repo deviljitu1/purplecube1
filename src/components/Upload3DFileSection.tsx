@@ -37,7 +37,7 @@ export const Upload3DFileSection: React.FC = () => {
   const enquire = (event: React.FormEvent) => {
     event.preventDefault();
     const text = `Hello Purple Cube! I'd like a 3D printing quote.\n3D file: ${fileName || (referenceImages.length ? 'Please help create a model from my reference images' : 'I will share a model or reference in this chat')}\nReference images: ${referenceImages.length ? referenceImages.map((image) => image.name).join(', ') : 'None selected'}\nMaterial: ${MATERIALS[material].name}\nQuantity: ${quantity}\nDimensions: ${dimensions || 'Please advise'}\nI will attach my selected files and reference images here for review.`;
-    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/919111190181?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
   };
 
   const chooseImages = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +83,7 @@ export const Upload3DFileSection: React.FC = () => {
               <button type="submit" disabled={!!fileError} className="inline-flex items-center gap-2 rounded-full bg-[#9D4EDD] px-5 py-3 text-sm text-white disabled:opacity-50"><WhatsAppIcon size={15} /> Request quotation</button>
             </form>
           </details>
-          <a href="tel:+919876543210" className="mt-3 inline-flex items-center gap-2 text-xs text-[#D7E2EA]/75 hover:text-white">Prefer to talk? Call the studio <ArrowUpRight size={13} /></a>
+          <a href="tel:+919111190181" className="mt-3 inline-flex items-center gap-2 text-xs text-[#D7E2EA]/75 hover:text-white">Prefer to talk? Call the studio <ArrowUpRight size={13} /></a>
         </FadeIn>
       </div>
     </section>

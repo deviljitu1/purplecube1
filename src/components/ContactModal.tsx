@@ -4,7 +4,8 @@
  */
 
 import React, { useState } from 'react';
-import { MessageSquare, Phone, Mail, Send, CheckCircle2, X } from 'lucide-react';
+import { Phone, Mail, Send, CheckCircle2, X } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon.tsx';
 import { ContactButton } from './ContactButton.tsx';
 
 interface ContactModalProps {
@@ -31,7 +32,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     const text = encodeURIComponent(
       `Hello Purple Cube! My name is ${name || 'there'}.\nEmail: ${email}\nPhone: ${phone}\nI would like to consult on a ${projectType}: "${message || 'I have a 3D file/concept ready.'}"`
     );
-    window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+    window.open(`https://wa.me/919111190181?text=${text}`, '_blank');
   };
 
   return (
@@ -109,7 +110,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91 98765 43210"
+                  placeholder="Your mobile number"
                   className="w-full bg-[#181820] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#9D4EDD]"
                 />
               </div>
@@ -172,7 +173,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 onClick={handleWhatsAppDirect}
                 className="w-full py-3.5 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-xs font-semibold uppercase tracking-wider hover:bg-[#25D366]/30 flex items-center justify-center gap-2 cursor-pointer"
               >
-                <MessageSquare size={15} />
+                <WhatsAppIcon size={15} />
                 <span>Quick WhatsApp</span>
               </button>
             </div>

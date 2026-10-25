@@ -73,7 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         {/* Action Buttons: WhatsApp & Direct Contact */}
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
           <a
-            href="https://wa.me/919876543210?text=Hello%20Purple%20Cube!%20I%20am%20interested%20in%203D%20printing%20services."
+            href="https://wa.me/919111190181?text=Hello%20Purple%20Cube!%20I%20am%20interested%20in%203D%20printing%20services."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-11 w-11 sm:h-auto sm:w-auto items-center justify-center gap-1.5 sm:px-3 sm:py-1.5 text-[#25D366] hover:opacity-80 text-xs font-mono font-medium tracking-wide transition-opacity"
@@ -150,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </button>
 
               <a
-                href="https://wa.me/919876543210?text=Hello%20Purple%20Cube!%20I%20am%20interested%20in%203D%20printing%20services."
+                href="https://wa.me/919111190181?text=Hello%20Purple%20Cube!%20I%20am%20interested%20in%203D%20printing%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}

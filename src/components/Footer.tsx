@@ -90,24 +90,26 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
             <div className="space-y-3 text-xs text-[#D7E2EA]/70">
               <div className="flex items-start gap-2.5">
                 <MapPin size={15} className="text-[#9D4EDD] shrink-0 mt-0.5" />
-                <span>Purple Cube Studio, Creative Industrial Hub, India</span>
+                <span>Mowa, Raipur, Chhattisgarh, India</span>
               </div>
               <div className="flex items-center gap-2.5">
+                <a href="tel:+919111190181" aria-label="Call Purple Cube" className="inline-flex min-h-11 items-center">
                 <Phone size={15} className="text-[#9D4EDD] shrink-0" />
-                <span>+91 98765 43210 (Pallav Sir)</span>
-              </div>
+                </a>
               <a
-                href="https://wa.me/919876543210?text=Hello%20Purple%20Cube!%20I%20am%20interested%20in%203D%20printing%20services."
+                href="https://wa.me/919111190181?text=Hello%20Purple%20Cube!%20I%20am%20interested%20in%203D%20printing%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-[#25D366] hover:text-[#25D366]/80 transition-colors"
+                aria-label="WhatsApp Purple Cube"
+                className="inline-flex min-h-11 items-center text-[#25D366] hover:text-[#25D366]/80 transition-colors"
               >
                 <WhatsAppIcon size={15} />
-                <span>+91 98765 43210 (WhatsApp Direct)</span>
               </a>
+                <a href="tel:+919111190181" className="hover:text-white">+91 91111 90181</a>
+              </div>
               <div className="flex items-center gap-2.5">
                 <Mail size={15} className="text-[#9D4EDD] shrink-0" />
-                <span>projects@purplecube3d.com</span>
+                <a href="mailto:info@purplecube.in">info@purplecube.in</a>
               </div>
               <button
                 type="button"

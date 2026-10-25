@@ -139,7 +139,7 @@ export const Studio3DCanvasLab: React.FC<Studio3DCanvasLabProps> = ({ onOpenCont
                   </a>
 
                   <a
-                    href="https://wa.me/919876543210?text=Hello%20Purple%20Cube!%20I%20am%20exploring%20your%203D%20Studio%20and%20would%20like%20a%20fabrication%20consultation."
+                    href="https://wa.me/919111190181?text=Hello%20Purple%20Cube!%20I%20am%20exploring%20your%203D%20Studio%20and%20would%20like%20a%20fabrication%20consultation."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 py-3 px-5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-[#D7E2EA] hover:text-white text-xs font-semibold uppercase tracking-wider transition-all"

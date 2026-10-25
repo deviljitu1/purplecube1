@@ -26,7 +26,7 @@ export const DesignPreview: React.FC<{ design: CollectionDesign; collection: str
             <span className="text-xs text-[#C77DFF]">{collection}</span>
             <h3 id="design-preview-title" className="mt-2 font-semibold leading-tight">{design.name}</h3>
             <p className="mt-3 leading-relaxed text-[#D7E2EA]/75">Discuss this design with the studio. We’ll confirm the size, material, finish and price before you order.</p>
-            <a href={`https://wa.me/919876543210?text=${enquiry}`} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#9D4EDD] px-5 py-3 text-sm font-medium text-white hover:bg-[#AD63E8]"><WhatsAppIcon size={18} /> Enquire on WhatsApp</a>
+            <a href={`https://wa.me/919111190181?text=${enquiry}`} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#9D4EDD] px-5 py-3 text-sm font-medium text-white hover:bg-[#AD63E8]"><WhatsAppIcon size={18} /> Enquire on WhatsApp</a>
           </div>
         </div>
       </div>

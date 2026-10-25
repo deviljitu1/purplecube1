@@ -219,7 +219,7 @@ export const ReadyMadeProducts: React.FC = () => {
     const text = encodeURIComponent(
       `Hi Purple Cube! I would like to inquire about the "${product.name}" in ${color}. Please share available finishes, custom dimensions, and dispatch timeline.`
     );
-    window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+    window.open(`https://wa.me/919111190181?text=${text}`, '_blank');
   };
 
   return (
@@ -316,7 +316,7 @@ export const ReadyMadeProducts: React.FC = () => {
           {designError && <p role="alert" className="mt-4 text-xs text-rose-300">{designError}</p>}
           {activeUploadedDesign && <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-[#9D4EDD]/30 bg-[#1C1325] p-4">
             <div className="min-w-0"><p className="truncate text-sm text-white">{activeUploadedDesign.name}</p><p className="mt-1 text-xs leading-relaxed text-[#D7E2EA]/70">Selected for {activeUploadedDesign.collection}. Attach the file in WhatsApp to send.</p><button type="button" onClick={removeDesign} className="mt-2 text-xs text-[#D9B4FA] underline underline-offset-4">Remove design</button></div>
-            <a href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Purple Cube! I'd like a custom print for ${activeUploadedDesign.collection}.\nMy design: ${activeUploadedDesign.name}\nI will attach this file in the chat. Please share feasibility and a quotation.`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#9D4EDD] px-5 py-3 text-sm font-medium text-white"><WhatsAppIcon size={16} /> Continue on WhatsApp</a>
+            <a href={`https://wa.me/919111190181?text=${encodeURIComponent(`Hello Purple Cube! I'd like a custom print for ${activeUploadedDesign.collection}.\nMy design: ${activeUploadedDesign.name}\nI will attach this file in the chat. Please share feasibility and a quotation.`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#9D4EDD] px-5 py-3 text-sm font-medium text-white"><WhatsAppIcon size={16} /> Continue on WhatsApp</a>
           </div>}
         </div>
 

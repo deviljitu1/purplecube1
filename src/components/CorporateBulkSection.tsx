@@ -25,7 +25,7 @@ export const CorporateBulkSection: React.FC = () => {
   const enquire = (event: React.FormEvent) => {
     event.preventDefault();
     const text = `Hello Purple Cube! I'd like to discuss a bulk order.\nFor: ${sector.name}\nOrganisation: ${organisation}\nQuantity: ${quantity || 'Please advise'}\nBrief: ${brief || 'Please help me explore the options.'}`;
-    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/919111190181?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
