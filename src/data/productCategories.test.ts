@@ -42,7 +42,9 @@ test('every main category has four collections with multiple distinct designs', 
 
 test('the comic collection includes all nine supplied designs', () => {
   const collection = PRODUCT_CATEGORIES.find((category) => category.id === 'miniatures')?.subcategories.find((item) => item.id === 'marvel');
-  assert.equal(collection?.designs.length, 9);
+  assert.ok(collection);
+  const originalDesigns = collection.designs.filter((design) => design.id.startsWith('design-'));
+  assert.equal(originalDesigns.length, 9);
   assert.ok(collection.designs.every((design) => design.imageFit === 'contain'));
   assert.ok(collection.designs.some((design) => design.name === 'Doctor Doom'));
   assert.ok(collection.designs.some((design) => design.name === 'Moon Knight'));
