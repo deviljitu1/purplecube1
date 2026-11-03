@@ -29,7 +29,7 @@ export const CorporateBulkSection: React.FC = () => {
   };
 
   return (
-    <section id="corporate" className="px-5 sm:px-8 md:px-12 py-16 sm:py-20 border-t border-white/[0.06] bg-[#0F0C13]">
+    <section id="corporate" className="px-5 sm:px-8 md:px-12 py-16 sm:py-20 border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-14 items-center">
         <FadeIn>
           <h2 className="hero-heading mt-3 text-3xl sm:text-4xl font-bold tracking-tight">Make something<br />worth sharing.</h2>

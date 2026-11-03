@@ -223,11 +223,11 @@ export const ReadyMadeProducts: React.FC = () => {
   };
 
   return (
-    <section id="products" className="py-16 sm:py-24 px-5 sm:px-8 md:px-12 bg-[#0C0C0C] relative">
+    <section id="products" className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-24 md:px-12">
       {/* Glow orb */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#6A0DAD]/10 blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="relative mx-auto max-w-7xl">
         {!activeCategory && <FadeIn y={30}>
           <div className="text-center max-w-3xl mx-auto mb-14">
             <h2 className="gift-collection-heading whitespace-nowrap tracking-tight hero-heading mb-4">
@@ -267,7 +267,7 @@ export const ReadyMadeProducts: React.FC = () => {
             </div>
             {activeSubcategory && <span className="shrink-0 text-sm text-[#C77DFF]">{activeSubcategory.designs.length} designs</span>}
           </div>
-          <div id="collection-cards" key={`${selectedCategory}-${selectedSubcategory}`} role="group" aria-label={activeSubcategory ? `${activeSubcategory.label} designs` : activeCategory ? `${activeCategory.label} subcategories` : 'Product collections'} className="mx-auto grid max-w-5xl grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div id="collection-cards" key={`${selectedCategory}-${selectedSubcategory}`} role="group" aria-label={activeSubcategory ? `${activeSubcategory.label} designs` : activeCategory ? `${activeCategory.label} subcategories` : 'Product collections'} className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {visibleCollections.map((collection) => {
               const cardClass = `group relative flex min-w-0 w-full flex-col rounded-2xl overflow-hidden border-2 bg-[#151019] text-left transition-colors cursor-pointer ${activeCategory && selectedSubcategory === collection.id ? 'border-[#C77DFF]' : 'border-white/10 hover:border-[#9D4EDD]'}`;
               const content = <>

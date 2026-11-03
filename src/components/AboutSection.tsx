@@ -12,7 +12,7 @@ interface AboutSectionProps {
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenContact }) => (
-  <section id="about" aria-labelledby="about-heading" className="relative overflow-hidden bg-[#0C0C0C] px-5 sm:px-8 md:px-12 py-14 sm:py-20">
+  <section id="about" aria-labelledby="about-heading" className="relative overflow-hidden px-5 sm:px-8 md:px-12 py-14 sm:py-20">
     <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[.95fr_1fr] lg:gap-14">
       <FadeIn y={16} className="relative min-w-0">
         <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#16121C] p-2.5 sm:p-3">

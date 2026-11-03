@@ -167,7 +167,7 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="bg-[#0C0C0C] relative pt-20 sm:pt-28 pb-12 md:pb-28 px-4 sm:px-6 md:px-10 border-t border-white/[0.06]"
+      className="relative pt-20 sm:pt-28 pb-12 md:pb-28 px-4 sm:px-6 md:px-10 border-t border-white/[0.06]"
     >
       <div className="max-w-5xl mx-auto mb-14 text-center">
         <FadeIn delay={0} y={30}>

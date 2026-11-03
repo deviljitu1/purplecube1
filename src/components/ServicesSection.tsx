@@ -56,7 +56,7 @@ export const ServicesSection: React.FC = () => {
   return (
     <section
       id="services"
-      className="bg-[#0C0C0C] text-white px-6 sm:px-8 md:px-12 py-24 sm:py-32 relative z-10 border-t border-white/[0.06]"
+      className="text-white px-6 sm:px-8 md:px-12 py-24 sm:py-32 relative z-10 border-t border-white/[0.06]"
     >
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}

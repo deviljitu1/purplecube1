@@ -112,6 +112,15 @@ section[id] { scroll-margin-top: 100px; }
 .hero-media-product { object-fit: contain; width: 65%; margin-left: auto; }
 .hero-shade { background: linear-gradient(90deg, #0C0C0CF5 0%, #0C0C0CC9 32%, #0C0C0C18 75%), linear-gradient(0deg, #0C0C0C 0%, transparent 50%, #0C0C0C20 100%); }
 .studio-grid { background-image: linear-gradient(#B784ED14 1px, transparent 1px), linear-gradient(90deg, #B784ED14 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(0deg, black, transparent 60%); }
+.app-surface {
+  background-color: #0A0A0C;
+  background-image:
+    linear-gradient(180deg, transparent 0%, transparent 14%, rgba(66, 34, 92, 0.58) 22%, rgba(29, 17, 40, 0.42) 60%, transparent 88%),
+    linear-gradient(rgba(199, 125, 255, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 125, 255, 0.065) 1px, transparent 1px);
+  background-size: auto, 56px 56px, 56px 56px;
+  background-attachment: fixed;
+}
 .product-card { box-shadow: 0 12px 36px -24px #000, inset 0 1px 0 #FFFFFF0C; }
 .order-cta {
   display: flex;

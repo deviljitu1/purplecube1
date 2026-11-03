@@ -48,7 +48,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
   const activeMedia = HERO_BACKGROUNDS[currentIdx];
 
   return (
-    <section aria-label="Purple Cube 3D printing studio" className="studio-hero relative isolate overflow-hidden bg-[#0C0C0C] px-5 sm:px-8 md:px-12 pt-16 sm:pt-20 pb-6 sm:pb-8">
+    <section aria-label="Purple Cube 3D printing studio" className="studio-hero relative isolate overflow-hidden px-5 sm:px-8 md:px-12 pt-16 sm:pt-20 pb-6 sm:pb-8">
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <AnimatePresence initial={false}>
           <motion.div key={activeMedia.id}
@@ -63,7 +63,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
           </motion.div>
         </AnimatePresence>
         <div className="hero-shade absolute inset-0" />
-        <div className="studio-grid absolute inset-0 opacity-20" />
+        <div className="studio-grid absolute inset-0 opacity-55" />
       </div>
 
       <div className="relative w-full max-w-7xl mx-auto flex flex-col justify-between flex-1">

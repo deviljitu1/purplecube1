@@ -17,6 +17,7 @@ import { ProjectsSection } from './components/ProjectsSection.tsx';
 import { Footer } from './components/Footer.tsx';
 import { ContactModal } from './components/ContactModal.tsx';
 import { PolicyPage } from './components/PolicyPage.tsx';
+import { CursorGlow } from './components/CursorGlow.tsx';
 import { POLICIES } from './data/policies.ts';
 
 export default function App() {
@@ -31,9 +32,10 @@ export default function App() {
 
   return (
     <div
-      className="min-h-screen bg-[#0C0C0C] text-white font-sans selection:bg-[#9D4EDD] selection:text-white"
+      className="app-surface min-h-screen text-white font-sans selection:bg-[#9D4EDD] selection:text-white"
       style={{ overflowX: 'clip' }}
     >
+      <CursorGlow />
       {/* Top Navbar */}
       <Navbar onOpenContact={() => setIsContactOpen(true)} />
 

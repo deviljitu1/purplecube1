@@ -32,7 +32,7 @@ const CAPABILITIES_ROW_2 = [
 export const MarqueeSection: React.FC = () => {
   return (
     <section
-      className="bg-[#0C0C0C] py-10 sm:py-14 border-y border-white/[0.06] overflow-hidden relative select-none"
+      className="py-10 sm:py-14 border-y border-white/[0.06] overflow-hidden relative select-none"
       aria-label="Studio Capabilities Ticker"
     >
       {/* Subtle fade edges for smooth gradient transition */}

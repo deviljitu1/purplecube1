@@ -14,7 +14,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
   return (
-    <footer className="bg-[#090909] border-t border-white/10 text-white pt-16 pb-12 px-6 md:px-12 relative z-20">
+    <footer className="border-t border-white/10 text-white pt-16 pb-12 px-6 md:px-12 relative z-20">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Brand info (2 cols) */}
