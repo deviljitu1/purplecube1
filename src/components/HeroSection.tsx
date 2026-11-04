@@ -28,10 +28,10 @@ export const HERO_BACKGROUNDS: BackgroundMediaItem[] = [
 ];
 
 const journeys = [
-  { href: '#products', icon: Box, title: 'Explore products', compactTitle: 'Browse gifts', detail: 'Objects for everyday life' },
-  { href: '#personalised', icon: Fingerprint, title: 'Make it personal', compactTitle: 'Personalise', detail: 'Miniatures & custom gifts' },
-  { href: '#upload', icon: Upload, title: 'Print your file', compactTitle: 'Print a file', detail: 'Share a model. Get a quote.' },
-  { href: '#corporate', icon: Layers3, title: 'Create in bulk', compactTitle: 'Bulk orders', detail: 'For teams, brands & events' },
+  { href: '#products', icon: Box, title: 'Browse designs', compactTitle: 'Browse designs', detail: 'Gifts, idols, décor and more' },
+  { href: '#personalised', icon: Fingerprint, title: 'Personalise a gift', compactTitle: 'Personalise', detail: 'Names, photos and custom details' },
+  { href: '#upload', icon: Upload, title: 'Get a print quote', compactTitle: 'Get a quote', detail: 'Upload a 3D file or reference image' },
+  { href: '#corporate', icon: Layers3, title: 'Plan a bulk order', compactTitle: 'Bulk orders', detail: 'Corporate gifting, events and branding' },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
