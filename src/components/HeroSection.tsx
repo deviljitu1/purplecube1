@@ -25,6 +25,11 @@ export const HERO_BACKGROUNDS: BackgroundMediaItem[] = [
     alt: 'White 3D printed architectural scale model of a modern villa',
     label: 'Big ideas. Brought to scale.', detail: 'Architectural models & custom projects',
   },
+  {
+    id: 'slide-4', type: 'image', src: '/images/hero-personal-miniature.webp',
+    alt: 'A woman holding a personalised miniature of a loved one',
+    label: 'Memories made tangible.', detail: 'Personalised photo miniatures',
+  },
 ];
 
 const journeys = [
@@ -79,7 +84,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
 
         <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row sm:items-end justify-between gap-5">
           <div className="flex items-center gap-3">
-            <span className="text-[#C77DFF] font-mono text-sm tabular-nums">0{currentIdx + 1}<span className="text-white/40"> / 03</span></span>
+            <span className="text-[#C77DFF] font-mono text-sm tabular-nums">{String(currentIdx + 1).padStart(2, '0')}<span className="text-white/40"> / {String(HERO_BACKGROUNDS.length).padStart(2, '0')}</span></span>
             <div className="h-8 w-px bg-white/20" />
             <div><p className="text-sm font-medium text-white">{activeMedia.label}</p><p className="mt-1 text-[11px] text-[#C6C1D0]">{activeMedia.detail}</p></div>
           </div>
