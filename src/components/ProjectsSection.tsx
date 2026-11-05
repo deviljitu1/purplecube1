@@ -177,9 +177,6 @@ export const ProjectsSection: React.FC = () => {
           >
             Projects
           </h2>
-          <p className="text-sm sm:text-base text-[#D7E2EA]/70 font-light mt-3 max-w-xl mx-auto">
-            Explore what you could create: scale models, detailed sculptures and functional mechanisms.
-          </p>
         </FadeIn>
       </div>
 

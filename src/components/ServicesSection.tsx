@@ -67,9 +67,6 @@ export const ServicesSection: React.FC = () => {
             >
               Services
             </h2>
-            <p className="text-sm sm:text-base text-[#D7E2EA]/70 font-light mt-3">
-              End-to-end additive manufacturing from CAD inception to polished delivery.
-            </p>
           </div>
         </FadeIn>
 

@@ -48,15 +48,22 @@ export default function App() {
         {/* 2. MARQUEE SECTION */}
         <MarqueeSection />
 
-        {/* 3. ABOUT SECTION */}
-        <AboutSection onOpenContact={() => setIsContactOpen(true)} />
+        {/* 3. PERSONALISED GIFTS SECTION */}
+        <div>
+          <PersonalizedSection />
+          <div className="px-5 pb-10 sm:px-8 sm:pb-12">
+            <div className="mx-auto grid max-w-5xl gap-7 md:grid-cols-2 md:gap-8">
+              <Upload3DFileSection compact />
+              <CorporateBulkSection compact />
+            </div>
+          </div>
+        </div>
 
-        {/* PURPLE CUBE CORE SECTION 1: Ready-made products */}
+        {/* 4. READY-MADE PRODUCTS */}
         <ReadyMadeProducts />
 
-        <PersonalizedSection />
-
-        <Upload3DFileSection />
+        {/* 5. ABOUT SECTION */}
+        <AboutSection onOpenContact={() => setIsContactOpen(true)} />
 
         {/* 4. SERVICES SECTION */}
         <ServicesSection />
@@ -64,8 +71,6 @@ export default function App() {
         {/* 5. PROJECTS SECTION */}
         <ProjectsSection />
 
-        {/* PURPLE CUBE CORE SECTION 4: Corporate & bulk orders */}
-        <CorporateBulkSection />
         </>}
       </main>
 

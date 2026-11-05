@@ -21,9 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           <div className="lg:col-span-2 space-y-4">
             <PurpleCubeLogo size={42} showText={true} />
             <p className="text-sm text-[#D7E2EA]/70 font-light max-w-sm leading-relaxed">
-              Purple Cube is a premier 3D printing and digital fabrication studio. From intricate
-              sacred Ganpati idols and bespoke personal miniatures to industrial engineering prototypes
-              and corporate scale production.
+              Personalised gifts, miniatures, custom models and reliable 3D printing.
             </p>
             <div className="flex items-center gap-2 pt-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>

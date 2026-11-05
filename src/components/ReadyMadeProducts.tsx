@@ -229,14 +229,10 @@ export const ReadyMadeProducts: React.FC = () => {
 
       <div className="relative mx-auto max-w-7xl">
         {!activeCategory && <FadeIn y={30}>
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2 className="gift-collection-heading whitespace-nowrap tracking-tight hero-heading mb-4">
+          <div className="mx-auto mb-10 max-w-3xl text-center">
+            <h2 className="gift-collection-heading whitespace-nowrap tracking-tight hero-heading">
               Gifts with a personal touch.
             </h2>
-            <p className="text-[#D7E2EA]/80 text-sm sm:text-base font-light">
-              Personalised keepsakes, collectible miniatures and thoughtful gifts.
-              Find a design you love, or share your own idea.
-            </p>
           </div>
         </FadeIn>}
 
@@ -263,7 +259,7 @@ export const ReadyMadeProducts: React.FC = () => {
           <div className="flex items-center justify-between gap-4 mb-4">
             <div>
               <h2 id="category-view-heading" ref={categoryHeading} tabIndex={-1} className={`${activeCategory ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'} font-semibold text-white focus:outline-none`}>{activeSubcategory?.label ?? activeCategory?.label ?? 'All Categories'}</h2>
-              <p className="mt-2 text-xs sm:text-sm text-[#D7E2EA]/75">{activeSubcategory ? 'Choose a design, then discuss size, finish and pricing on WhatsApp.' : activeCategory ? 'Choose a collection to view designs, or add your own.' : 'Choose a category to discover what you can create.'}</p>
+              {activeCategory && <p className="mt-2 text-xs sm:text-sm text-[#D7E2EA]/75">{activeSubcategory ? 'Choose a design, then discuss size, finish and pricing on WhatsApp.' : 'Choose a collection to view designs, or add your own.'}</p>}
             </div>
             {activeSubcategory && <span className="shrink-0 text-sm text-[#C77DFF]">{activeSubcategory.designs.length} designs</span>}
           </div>

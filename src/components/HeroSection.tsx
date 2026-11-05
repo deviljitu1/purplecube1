@@ -28,10 +28,10 @@ export const HERO_BACKGROUNDS: BackgroundMediaItem[] = [
 ];
 
 const journeys = [
-  { href: '#products', icon: Box, title: 'Browse designs', compactTitle: 'Browse designs', detail: 'Gifts, idols, décor and more' },
-  { href: '#personalised', icon: Fingerprint, title: 'Personalise a gift', compactTitle: 'Personalise', detail: 'Names, photos and custom details' },
-  { href: '#upload', icon: Upload, title: 'Get a print quote', compactTitle: 'Get a quote', detail: 'Upload a 3D file or reference image' },
-  { href: '#corporate', icon: Layers3, title: 'Plan a bulk order', compactTitle: 'Bulk orders', detail: 'Corporate gifting, events and branding' },
+  { href: '#products', icon: Box, title: 'Explore Products', compactTitle: 'Explore Products', detail: 'Discover unique creations for everyday living.', action: 'Shop Collection' },
+  { href: '#personalised', icon: Fingerprint, title: 'Make It Personal', compactTitle: 'Make It Personal', detail: 'Your photos, your memories, your own 3D miniature.', action: 'Personalise Now' },
+  { href: '#upload', icon: Upload, title: 'Print Your File', compactTitle: 'Print Your File', detail: 'Have a 3D model? Let us bring it to life.', action: 'Get a Quote' },
+  { href: '#corporate', icon: Layers3, title: 'Create In Bulk', compactTitle: 'Create In Bulk', detail: 'Custom merchandise, corporate gifts and bulk orders.', action: 'Business Enquiry' },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
@@ -69,8 +69,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
       <div className="relative w-full max-w-7xl mx-auto flex flex-col justify-between flex-1">
         <motion.div initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="hero-copy max-w-2xl">
           <h1 className="hero-heading-purple text-[clamp(2.8rem,7vw,6.5rem)] leading-[0.95] tracking-[-0.045em] font-black uppercase">Purple Cube</h1>
-          <h2 className="mt-5 text-2xl sm:text-4xl font-medium leading-tight tracking-tight text-white">Your ideas.<br />Made real in 3D.</h2>
-          <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-[#E2DFE9]">3D printing, personalised miniatures, everyday objects and custom models. Designed with you. Printed with care.</p>
+          <h2 className="mt-5 text-2xl sm:text-4xl font-medium leading-tight tracking-tight text-white">Imagine It.<br />We Bring It To Life.</h2>
+          <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-[#E2DFE9]">From personalised miniatures to creative everyday products, we transform ideas, images and designs into beautifully crafted 3D creations.</p>
           <div className="mt-7 flex flex-col min-[400px]:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
             <ContactButton label="Discuss your idea" onClick={onOpenContact} className="!px-6 !text-sm !py-3.5" />
             <a href="#products" className="inline-flex justify-center items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-medium uppercase tracking-wider text-white backdrop-blur-md hover:bg-white/10 transition-colors">Explore products <ArrowUpRight size={15} /></a>
@@ -94,11 +94,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
         </div>
 
         <div className="mt-4 sm:mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
-          {journeys.map(({ href, icon: Icon, title, compactTitle, detail }) => (
+          {journeys.map(({ href, icon: Icon, title, compactTitle, detail, action }) => (
             <a key={href} href={href} className="journey-card group flex min-h-11 items-center sm:items-start gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-white/15 bg-[#15121D]/85 px-3 py-2.5 sm:p-5 backdrop-blur-xl transition-all hover:border-[#B879F2]/65 hover:bg-[#241630]">
               <Icon size={20} strokeWidth={1.5} className="hidden sm:block shrink-0 text-[#CF9DF8] mt-0.5" />
-              <div className="min-w-0 flex-1"><span className="block text-xs sm:text-sm font-medium text-white"><span className="sm:hidden">{compactTitle}</span><span className="hidden sm:inline">{title}</span></span><span className="mt-1 hidden sm:block text-xs leading-relaxed text-[#C7C0D2]">{detail}</span></div>
-              <ArrowUpRight size={14} className="shrink-0 text-[#C77DFF]" />
+              <div className="min-w-0 flex-1"><span className="block text-xs sm:text-sm font-medium text-white"><span className="sm:hidden">{compactTitle}</span><span className="hidden sm:inline">{title}</span></span><span className="mt-1 hidden sm:block text-xs leading-relaxed text-[#C7C0D2]">{detail}</span><span className="mt-2 hidden items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-[#C77DFF] sm:inline-flex">{action} <ArrowUpRight size={11} /></span></div>
+              <ArrowUpRight size={14} className="shrink-0 text-[#C77DFF] sm:hidden" />
             </a>
           ))}
         </div>

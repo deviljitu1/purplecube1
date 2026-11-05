@@ -13,6 +13,8 @@ export const PersonalizedSection: React.FC = () => {
   const [height, setHeight] = useState('6 inches');
   const [photos, setPhotos] = useState<string[]>([]);
   const photoUrls = useRef<string[]>([]);
+  const miniatureDetails = useRef<HTMLDetailsElement>(null);
+  const productDetails = useRef<HTMLDetailsElement>(null);
   const [photoError, setPhotoError] = useState('');
   const [product, setProduct] = useState('Keychain');
   const [name, setName] = useState('YOUR NAME');
@@ -38,20 +40,19 @@ export const PersonalizedSection: React.FC = () => {
   const field = 'w-full rounded-xl border border-white/15 bg-[#18151F] px-3 py-3 text-sm text-white focus:border-[#C77DFF]';
 
   return (
-    <section id="personalised" className="px-5 sm:px-8 md:px-12 py-16 sm:py-20 border-t border-white/[0.06]">
-      <div className="max-w-6xl mx-auto">
+    <section id="personalised" className="px-5 pb-4 pt-10 sm:px-8 sm:pb-5 sm:pt-12">
+      <div className="mx-auto max-w-5xl">
         <FadeIn>
-          <div className="max-w-xl mb-9">
-            <h2 className="hero-heading mt-3 text-3xl sm:text-4xl font-bold tracking-tight">A little more personal.</h2>
-            <p className="mt-3 text-sm sm:text-base text-[#D7E2EA]/80">Turn a photograph into a keepsake, or put your name on an everyday favourite.</p>
+          <div className="mb-7 max-w-3xl">
+            <h2 className="hero-heading !text-2xl font-bold tracking-tight sm:!text-3xl">More Than Just 3D Printing.</h2>
+            <p className="mt-2 text-base font-semibold text-[#C77DFF]">We Create Possibilities.</p>
           </div>
         </FadeIn>
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+        <div className="grid items-start gap-7 md:grid-cols-2 md:gap-8">
           <FadeIn>
-            <img src="/images/miniature-bust.webp" alt="Detailed sculpted miniature bust" loading="lazy" width={1000} height={1000} className="w-full aspect-[4/3] object-cover rounded-2xl" />
-            <h3 className="mt-5 text-xl font-semibold text-white">Your photo. Your miniature.</h3>
-            <p className="mt-2 text-sm text-[#D7E2EA]/75">Solo, couple or family keepsakes, sculpted from your photos.</p>
-            <details name="personalisation" className="group mt-5">
+            <button type="button" aria-label="Open miniature order form" onClick={() => { if (miniatureDetails.current) miniatureDetails.current.open = true; }} className="block w-full cursor-pointer rounded-2xl text-left"><img src="/images/showcase-miniature.webp" alt="Personalised miniature created from a portrait" loading="lazy" width={1200} height={900} className="aspect-[4/3] w-full rounded-2xl border border-white/10 object-cover transition-colors hover:border-[#C77DFF]/60" /></button>
+            <h3 className="mt-5 min-h-7 !text-xl font-semibold leading-7 text-white"><button type="button" onClick={() => { if (miniatureDetails.current) miniatureDetails.current.open = true; }} className="cursor-pointer text-left hover:text-[#D9B4FA]">Your photo. Your miniature.</button></h3>
+            <details ref={miniatureDetails} name="personalisation" className="group mt-4">
               <summary className="order-cta">Create a miniature <ChevronDown size={18} className="transition-transform group-open:rotate-180" /></summary>
               <form className="space-y-4 pt-5 pb-2" onSubmit={(event) => { event.preventDefault(); enquire(`Hello Purple Cube! I'd like a ${subject.toLowerCase()} miniature, ${height} tall. I have reference photos to attach in this chat. Please share finishes and a quotation.`); }}>
                 <div className="grid grid-cols-2 gap-3">
@@ -67,10 +68,9 @@ export const PersonalizedSection: React.FC = () => {
             </details>
           </FadeIn>
           <FadeIn delay={0.08}>
-            <img src="/images/desk-organizer.webp" alt="Violet modular 3D printed desk organiser" loading="lazy" width={1000} height={1000} className="w-full aspect-[4/3] object-cover rounded-2xl" />
-            <h3 className="mt-5 text-xl font-semibold text-white">Everyday objects, your way.</h3>
-            <p className="mt-2 text-sm text-[#D7E2EA]/75">Custom names, colours and sizes for gifts and desk essentials.</p>
-            <details name="personalisation" className="group mt-5">
+            <button type="button" aria-label="Open product personalisation form" onClick={() => { if (productDetails.current) productDetails.current.open = true; }} className="block w-full cursor-pointer rounded-2xl text-left"><img src="/images/showcase-lifestyle.webp" alt="3D printed sculptural lamp and pastel planter" loading="lazy" width={1200} height={900} className="aspect-[4/3] w-full rounded-2xl border border-white/10 object-cover transition-colors hover:border-[#C77DFF]/60" /></button>
+            <h3 className="mt-5 min-h-7 !text-xl font-semibold leading-7 text-white"><button type="button" onClick={() => { if (productDetails.current) productDetails.current.open = true; }} className="cursor-pointer text-left hover:text-[#D9B4FA]">Everyday objects, your way.</button></h3>
+            <details ref={productDetails} name="personalisation" className="group mt-4">
               <summary className="order-cta">Personalise a product <ChevronDown size={18} className="transition-transform group-open:rotate-180" /></summary>
               <form className="space-y-4 pt-5 pb-2" onSubmit={(event) => { event.preventDefault(); enquire(`Hello Purple Cube! I'd like a personalised ${product.toLowerCase()}.\nName: ${name}\nColour: ${colours.find((item) => item.hex === colour)?.name}\nSize: ${size}\nPlease share options and a quotation.`); }}>
                 <div className="grid grid-cols-2 gap-3">
