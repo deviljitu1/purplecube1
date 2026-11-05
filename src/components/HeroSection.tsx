@@ -97,7 +97,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
           {journeys.map(({ href, icon: Icon, title, compactTitle, detail, action }) => (
             <a key={href} href={href} className="journey-card group flex min-h-11 items-center sm:items-start gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-white/15 bg-[#15121D]/85 px-3 py-2.5 sm:p-5 backdrop-blur-xl transition-all hover:border-[#B879F2]/65 hover:bg-[#241630]">
               <Icon size={20} strokeWidth={1.5} className="hidden sm:block shrink-0 text-[#CF9DF8] mt-0.5" />
-              <div className="min-w-0 flex-1"><span className="block text-xs sm:text-sm font-medium text-white"><span className="sm:hidden">{compactTitle}</span><span className="hidden sm:inline">{title}</span></span><span className="mt-1 hidden sm:block text-xs leading-relaxed text-[#C7C0D2]">{detail}</span><span className="mt-2 hidden items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-[#C77DFF] sm:inline-flex">{action} <ArrowUpRight size={11} /></span></div>
+              <div className="min-w-0 flex-1"><span className="block text-xs font-medium text-white sm:text-lg sm:font-semibold sm:tracking-[-0.01em] sm:drop-shadow-[0_0_8px_rgba(199,125,255,0.24)]"><span className="sm:hidden">{compactTitle}</span><span className="hidden sm:inline">{title}</span></span><span className="mt-1 hidden sm:block text-xs leading-relaxed text-[#C7C0D2]">{detail}</span><span className="mt-2 hidden items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-[#C77DFF] sm:inline-flex">{action} <ArrowUpRight size={11} /></span></div>
               <ArrowUpRight size={14} className="shrink-0 text-[#C77DFF] sm:hidden" />
             </a>
           ))}
